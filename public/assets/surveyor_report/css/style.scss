@@ -1,0 +1,273 @@
+@font-face {
+  font-family: bangla;
+  src: url(../font/Nikosh.ttf);
+}
+
+:root {
+  --primaryFont: 'bangla';
+  --blackColor: #000000;
+}
+
+/*==============================
+Default CSS
+===============================*/
+h1,h2,h3,h4,h5,h6 {
+  font: {
+    family: var(--primaryFont);
+  };
+}
+
+p {
+  line-height: 1.8;
+  font: {
+    size: 14px;
+    family: var(--primaryFont)
+  };
+}
+
+.container {
+  width: 992px;
+  margin: {
+    left: auto;
+    right: auto;
+  };
+}
+
+img {
+  max-width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  vertical-align: middle;
+}
+
+#printPageButton {
+  border: none;
+  margin: 15px;
+  cursor: pointer;
+  padding: 12px 35px;
+  border-radius: 5px;
+  color: var(--blackColor);
+  background-color: #eeeeee;
+  transition: .5s ease-in-out;
+  box-shadow: 0px 0px 5px #eeeeee;
+  font:  {
+    size: 14px;
+    weight: 500;
+  };
+  &:hover {
+    background-color: #252525;
+    color: #ffffff;
+  }
+}
+
+@media print {
+  #printPageButton {
+    display: none;
+  }
+}
+
+/*==============================
+Topbar Area
+===============================*/
+.topbar-content {
+  text-align: center;
+
+  .main-title {
+    margin-top: 40px;
+    h4 {
+      margin: {
+        top: 0;
+        bottom: 8px;
+      };
+      font: {
+        size: 18px;
+        weight: 700;
+      };
+    }
+    a {
+      display: inline-block;
+      color: var(--blackColor);
+      text-decoration: none;
+
+      font: {
+        size: 24px;
+      };
+    }
+  }
+
+  .mojib-logo {
+    h4 {
+      margin: 0;
+      padding: 9px 6px;
+      border: 1px solid var(--blackColor);
+      font: {
+        size: 15px;
+        weight: 700;
+      };
+    }
+    img {
+      max-width: 120px;
+    }
+  }
+}
+
+/*==============================
+Notice Body Area
+===============================*/
+.main-body-top-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .letter-no {
+    p {
+      font: {
+        size: 14px;
+        weight: 600;
+      };
+    }
+  }
+
+  .issue-date {
+    position: relative;
+    text-align: center;
+    p {
+      margin: 5px 0px;
+      font: {
+        size: 14px;
+        weight: 600;
+      };
+    }
+    &::before {
+      content: '';
+      width: 115%;
+      height: 2px;
+      background-color: var(--blackColor);
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.notice-sub {
+  p {
+    text-decoration: underline;
+    line-height: 1.5;
+    font: {
+      size: 16px;
+      weight: 600;
+    };
+  }
+}
+
+.notice {
+  .main-notice {
+    &::first-letter {
+      padding-left: 100px;
+    }
+  }
+}
+.notice-calculation-table {
+  max-width: 320px;
+  margin: {
+    left: auto;
+    right: auto;
+    top: 30px;
+    bottom: 30px
+  };
+  h4 {
+    margin-bottom: 12px;
+    text-decoration: underline;
+    font-size: 18px;
+    font-family: var(--primaryFont);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      text-align: right;
+      margin-top: 5px;
+      font: {
+        size: 15px;
+        family: var(--primaryFont);
+      };
+      &:first-child {
+        text-decoration: underline;
+      }
+      span {
+        &:first-child {
+          margin-right: 15px;
+        }
+        &:last-child {
+          width: 120px;
+          display: inline-block;
+        }
+      }
+    }
+    .total {
+      border-top: 1px solid var(--blackColor);
+      padding-top: 5px;
+    }
+  }
+}
+
+/*==============================
+Footer Area
+===============================*/
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 100px;
+}
+
+.footer-left-area {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      margin-top: 5px;
+      font: {
+        size: 15px;
+        family: var(--primaryFont);
+      };
+     }
+  }
+  h5 {
+    margin: {
+      top: 24px;
+      bottom: 10px;
+    };
+    font: {
+      size: 16px;
+      weight: 700;
+    };
+  }
+}
+
+.footer-right-area {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      margin-top: 5px;
+      &:first-child {
+        margin-top: 25px;
+      }
+      font: {
+        size: 15px;
+        weight: 600;
+        family: var(--primaryFont);
+      };
+    }
+  }
+}

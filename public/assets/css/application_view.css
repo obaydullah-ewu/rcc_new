@@ -1,0 +1,19 @@
+
+#tableToPrint table tr td{
+    padding-bottom: 15px;
+}
+small.create_seal{
+    color: #371F99 !important;
+}
+@media print {
+    small.create_seal{
+        color: #371F99 !important;
+        -webkit-print-color-adjust: exact;
+    }
+}
+.create_seal{
+    color: #020239;
+}
+.quarterTableList{
+    display: none;
+}
