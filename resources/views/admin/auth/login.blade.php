@@ -43,7 +43,7 @@
                 <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <img alt="Logo" src="{{ asset('/') }}assets/media/logo.jpg" class="" style="height: 180px; " />
+                        <img alt="Logo" src="{{ asset('/') }}assets/media/logo.png" class="" style="height: 180px; " />
                         <h1 class="text-dark mb-3">Sign In to Admin Panel</h1>
                         <!--end::Title-->
                     </div>

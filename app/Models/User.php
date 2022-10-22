@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,28 +40,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function division()
+    public function userPresentAddress(): HasOne
     {
-        return $this->belongsTo(Division::class);
+        return $this->hasOne(UserPresentAddress::class);
     }
 
-    public function district()
+    public function userPermanentAddress(): HasOne
     {
-        return $this->belongsTo(District::class);
-    }
-
-    public function upazila()
-    {
-        return $this->belongsTo(Upazila::class);
-    }
-
-    public function postOffice()
-    {
-        return $this->belongsTo(PostOffice::class);
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Village::class);
+        return $this->hasOne(UserPermanentAddress::class);
     }
 }

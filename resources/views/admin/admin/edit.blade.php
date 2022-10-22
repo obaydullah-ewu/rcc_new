@@ -15,14 +15,6 @@
                         <div class="card card-custom gutter-b example example-compact">
                             <div class="card-header">
                                 <h3 class="card-title">Edit Admin</h3>
-                                <div class="card-toolbar">
-                                    <div class="example-tools justify-content-center">
-                                        <span class="example-toggle" data-toggle="tooltip" title=""
-                                              data-original-title="View code"></span>
-                                        <span class="example-copy" data-toggle="tooltip" title=""
-                                              data-original-title="Copy code"></span>
-                                    </div>
-                                </div>
                             </div>
                             <!--begin::Form-->
                             <form class="form" action="{{ route('admin.admin.update', $admin->id) }}" method="post" enctype="multipart/form-data">
@@ -83,7 +75,7 @@
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পাসওয়ার্ড</label>
-                                            <input type="password" name="password" class="form-control form-control-solid" placeholder="Enter password">
+                                            <input type="text" name="password" class="form-control form-control-solid" placeholder="Enter password">
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fs-6 fw-bolder">পদবী নাম</label>
@@ -103,43 +95,31 @@
 
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">বিভাগ নাম</label>
-                                            <select name="division_id" class="form-select form-select-solid division_id" required>
-                                                <option value="">বিভাগ নাম</option>
-                                                @foreach($divisions as $division)
-                                                    <option value="{{ $division->id }}" {{ $division->id == $admin->division_id ? 'selected':'' }}>{{ $division->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" name="division" class="form-control form-control-solid" placeholder="Enter division" value="{{ old('division') }}">
                                         </div>
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">জেলা নাম</label>
-                                            <select class="form-select form-select-solid district_id" name="district_id" required>
-                                                <option value="">-- জেলা নাম --</option>
-                                            </select>
+                                            <input type="text" name="district" class="form-control form-control-solid" placeholder="Enter district" value="{{ old('district') }}">
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">উপজেলা নাম</label>
-                                            <select class="form-select form-select-solid upazila_id" name="upazila_id" required>
-                                                <option value="">-- উপজেলা নাম --</option>
-                                            </select>
+                                            <input type="text" name="upazila" class="form-control form-control-solid" placeholder="Enter upazila" value="{{ old('upazila') }}">
+
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পোস্ট অফিস নাম</label>
-                                            <select class="form-select form-select-solid post_office_id" name="post_office_id" required>
-                                                <option value="">-- পোস্ট অফিস নাম --</option>
-                                            </select>
+                                            <input type="text" name="post_office" class="form-control form-control-solid" placeholder="Enter post office" value="{{ old('post_office') }}">
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">গ্রাম নাম</label>
-                                            <select class="form-select form-select-solid village_id" name="village_id" >
-                                                <option value="">-- গ্রাম নাম --</option>
-                                            </select>
+                                            <input type="text" name="village" class="form-control form-control-solid" placeholder="Enter village" value="{{ old('village') }}">
                                         </div>
                                         <!--end::Input group-->
 
@@ -194,151 +174,5 @@
             });
         });
     </script>
-
-    <script>
-        $(function (){
-            var division_id = "{{ $admin->division_id }}";
-            var district_id = "{{ $admin->district_id }}"
-            var upazila_id = "{{ $admin->upazila_id }}"
-            var post_office_id = "{{ $admin->post_office_id }}"
-            var village_id = "{{ $admin->village_id }}"
-
-            //Get District
-            $.ajax({
-                url: '{{route('location.getDistrict')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'division_id':division_id, 'district_id':district_id},
-                success: function (response) {
-                    $('.district_id').html('<option value="">-- জেলা নাম --</option>');
-                    $.each(response.districts, function (key, value) {
-                        $(".district_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                    $('.district_id').val(response.district_id)
-                }
-            });
-
-            //Get Upazilas
-            $.ajax({
-                url: '{{route('location.getUpazila')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'district_id':district_id, 'upazila_id':upazila_id},
-                success: function (response) {
-                    $('.upazila_id').html('<option value="">-- উপজেলা নাম --</option>');
-                    $.each(response.upazilas, function (key, value) {
-                        $(".upazila_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                    $('.upazila_id').val(response.upazila_id)
-                }
-            });
-
-            //Get Post Offices
-            $.ajax({
-                url: '{{route('location.getPostOffice')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'upazila_id':upazila_id, 'post_office_id': post_office_id},
-                success: function (response) {
-                    console.log(response)
-                    $('.post_office_id').html('<option value="">-- পোস্ট অফিস নাম --</option>');
-                    $.each(response.postOffices, function (key, value) {
-                        $(".post_office_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                    $('.post_office_id').val(response.post_office_id)
-                }
-            });
-
-            //Get Villages
-            $.ajax({
-                url: '{{route('location.getVillages')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'post_office_id': post_office_id, 'village_id':village_id},
-                success: function (response) {
-                    console.log(response)
-                    $('.village_id').html('<option value="">-- গ্রাম নাম --</option>');
-                    $.each(response.villages, function (key, value) {
-                        $(".village_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                    $('.village_id').val(response.village_id)
-                }
-            });
-        })
-
-
-    </script>
-
-    <script>
-        $('.division_id').on('change', function (){
-            var division_id = $(this).val();
-            console.log(division_id)
-            $.ajax({
-                url: '{{route('location.getDistrict')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'division_id':division_id},
-                success: function (response) {
-                    $('.district_id').html('<option value="">-- জেলা নাম --</option>');
-                    $.each(response.districts, function (key, value) {
-                        $(".district_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        })
-
-        $('.district_id').on('change', function (){
-            var district_id = $(this).val();
-            $.ajax({
-                url: '{{route('location.getUpazila')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'district_id':district_id},
-                success: function (response) {
-                    $('.upazila_id').html('<option value="">-- উপজেলা নাম --</option>');
-                    $.each(response.upazilas, function (key, value) {
-                        $(".upazila_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        })
-
-        $('.upazila_id').on('change', function (){
-            var upazila_id = $(this).val();
-            console.log(upazila_id)
-            console.log('inn')
-            $.ajax({
-                url: '{{route('location.getPostOffice')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'upazila_id':upazila_id},
-                success: function (response) {
-                    console.log(response)
-                    $('.post_office_id').html('<option value="">-- পোস্ট অফিস নাম --</option>');
-                    $.each(response.postOffices, function (key, value) {
-                        $(".post_office_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        })
-
-        $('.post_office_id').on('change', function (){
-            var post_office_id = $(this).val();
-            $.ajax({
-                url: '{{route('location.getVillages')}}',
-                type: "GET",
-                dataType: 'json',
-                data: {'post_office_id':post_office_id},
-                success: function (response) {
-                    console.log(response)
-                    $('.village_id').html('<option value="">-- গ্রাম নাম --</option>');
-                    $.each(response.villages, function (key, value) {
-                        $(".village_id").append('<option value="' + value.id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        })
-    </script>
-
 @endpush
 

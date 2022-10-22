@@ -20,11 +20,11 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('image')->nullable();
             $table->string('mobile_number')->unique();;
-            $table->unsignedBigInteger('division_id')->nullable();
-            $table->unsignedBigInteger('district_id')->nullable();
-            $table->unsignedBigInteger('upazila_id')->nullable();
-            $table->unsignedBigInteger('post_office_id')->nullable();
-            $table->unsignedBigInteger('village_id')->nullable();
+            $table->string('division')->nullable();
+            $table->string('district')->nullable();
+            $table->string('upazila')->nullable();
+            $table->string('post_office')->nullable();
+            $table->string('village')->nullable();
             $table->tinyInteger('status')->comment('1=active, 0=disable')->default(1);
             $table->rememberToken();
             $table->timestamps();

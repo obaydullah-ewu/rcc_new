@@ -138,42 +138,38 @@
                         <span class="menu-title">ড্যাশবোর্ড</span>
                     </a>
                 </div>
-
-
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">জমি লিজ</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">নাগরিকত্ব</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ @$navLandLeaseActiveCLass }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navCitizenshipActiveClass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                           <i class="fas fa-address-card"></i>
-                            <!--end::Svg Icon-->
+                           <i class="fas fa-users"></i>
                         </span>
-
-                        <span class="menu-title">জমি লিজ</span>
+                        <span class="menu-title">নাগরিকত্ব </span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-{{--                        <div class="menu-item menu-accordion">--}}
-{{--                            <a href="{{ route('user.land-lease.create') }}"--}}
-{{--                               class="menu-link {{ @$subNavAddLandLeaseActiveCLass }}">--}}
-{{--                                <span class="menu-bullet">--}}
-{{--                                   <i class="fas fa-plus"></i>--}}
-{{--                                </span>--}}
-{{--                                <span class="menu-title">নতুন জমি লিজ গ্রহণের আবেদন</span>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('user.land-lease.index') }}"
-                               class="menu-link {{ @$subNavLandLeaseIndexActiveCLass }}">
+                            <a href="{{ route('user.citizenship.list') }}"
+                               class="menu-link {{ @$subNavCitizenshipListActiveClass }}">
                                 <span class="menu-bullet">
                                    <i class="fas fa-list-ul"></i>
                                 </span>
-                                <span class="menu-title">জমি লিজের তালিকা</span>
+                                <span class="menu-title">নাগরিক সনদ তালিকা</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('user.citizenship.add') }}"
+                               class="menu-link {{ @$subNavAddCitizenshipActiveClass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">নাগরিক সনদ আবেদন</span>
                             </a>
                         </div>
                     </div>

@@ -16,14 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
-
-        $this->call(DivisionSeeder::class);
-        $this->call(DistrictSeeder::class);
-        $this->call(UpazilaSeeder::class);
-        $this->call(PostOfficeSeeder::class);
-        $this->call(VillageSeeder::class);
-
-        $this->call(MouzaSeeder::class);
-        $this->call(LandKhotiyanSeeder::class);
     }
 }

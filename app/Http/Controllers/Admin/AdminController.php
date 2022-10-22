@@ -48,7 +48,6 @@ class AdminController extends Controller
         $data['navAdminActiveCLass'] = 'hover show';
         $data['subNavAdminAddActiveCLass'] = 'active';
         $data['roles'] = Role::all();
-        $data['divisions'] = Division::all();
         return view('admin.admin.add')->with($data);
     }
 
@@ -72,11 +71,11 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->password = Hash::make($request->password);
         $admin->mobile_number = $request->mobile_number;
-        $admin->division_id = $request->division_id;
-        $admin->district_id = $request->district_id;
-        $admin->upazila_id = $request->upazila_id;
-        $admin->post_office_id = $request->post_office_id;
-        $admin->village_id = $request->village_id;
+        $admin->division = $request->division;
+        $admin->district = $request->district;
+        $admin->upazila = $request->upazila;
+        $admin->post_office = $request->post_office;
+        $admin->village = $request->village;
         $admin->role_id = $request->role_id;
         $admin->status = $request->status ?? 1;
 
@@ -87,7 +86,7 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return redirect()->route('admin.admin.index')->with('success', 'Admin Created Successfully');
+        return redirect()->route('admin.admin.index')->with('success', 'Created Successfully');
     }
 
     /**
@@ -119,7 +118,6 @@ class AdminController extends Controller
         $data['subNavAdminListActiveCLass'] = 'active';
         $data['admin'] = Admin::findOrFail($id);
         $data['roles'] = Role::all();
-        $data['divisions'] = Division::all();
         return view('admin.admin.edit')->with($data);
     }
 
@@ -136,17 +134,18 @@ class AdminController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             'mobile_number' => 'required|unique:admins,mobile_number,'.$id,
+            'password' => 'nullable|min:6'
         ]);
 
         $admin = Admin::findOrFail($id);
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->mobile_number = $request->mobile_number;
-        $admin->division_id = $request->division_id;
-        $admin->district_id = $request->district_id;
-        $admin->upazila_id = $request->upazila_id;
-        $admin->post_office_id = $request->post_office_id;
-        $admin->village_id = $request->village_id;
+        $admin->division = $request->division;
+        $admin->district = $request->district;
+        $admin->upazila = $request->upazila;
+        $admin->post_office = $request->post_office;
+        $admin->village = $request->village;
         $admin->role_id = $request->role_id;
         $admin->status = $request->status ?? 1;
 
@@ -162,7 +161,7 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return redirect()->route('admin.admin.index')->with('success', 'Admin Updated Successfully');
+        return redirect()->route('admin.admin.index')->with('success', 'Updated Successfully');
     }
 
     /**
@@ -174,9 +173,6 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $admin = Admin::findOrFail($id);
-        if ($admin->role_id < 5) {
-            return redirect()->back()->with('error', 'First 4 Admin can not deleted');
-        }
 
         if ($admin->image) {
             deleteFile(@$admin->image);

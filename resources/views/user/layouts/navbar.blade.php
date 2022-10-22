@@ -3,7 +3,7 @@
     <div class="header-brand">
         <!--begin::Logo-->
         <a href="{{ route('user.dashboard') }}">
-            <img alt="Logo" src="{{ asset('/') }}assets/media/logo.jpg" class="h-25px h-lg-25px" />
+            <img alt="Logo" src="{{ asset('/') }}assets/media/logo.png" class="h-25px h-lg-25px" />
         </a>
         <h6 class="text-white">জেলা পরিষদ নারায়ণগঞ্জ</h6>
         <!--end::Logo-->

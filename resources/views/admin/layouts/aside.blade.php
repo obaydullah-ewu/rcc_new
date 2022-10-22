@@ -202,11 +202,8 @@
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navUserActiveCLass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                            <i class="fas fa-users"></i>
-                            <!--end::Svg Icon-->
                         </span>
-
                         <span class="menu-title">ব্যবহারকারী </span>
                         <span class="menu-arrow"></span>
                     </span>
@@ -229,164 +226,27 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">ঠিকানা</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">নাগরিকত্ব</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navLocationActiveCLass }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navCitizenshipActiveClass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                           <i class="fas fa-address-card"></i>
-                            <!--end::Svg Icon-->
+                           <i class="fas fa-users"></i>
                         </span>
-
-                        <span class="menu-title">ঠিকানা</span>
+                        <span class="menu-title">নাগরিকত্ব </span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('location.divisions') }}"
-                               class="menu-link {{ @$subNavDivisionActiveCLass }}">
+                            <a href="{{ route('admin.citizenship.list') }}"
+                               class="menu-link {{ @$subNavCitizenshipListActiveClass }}">
                                 <span class="menu-bullet">
                                    <i class="fas fa-list-ul"></i>
                                 </span>
-                                <span class="menu-title">বিভাগ</span>
-                            </a>
-                            <a href="{{ route('location.districts') }}"
-                               class="menu-link {{ @$subNavDistrictActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">জেলা</span>
-                            </a>
-                            <a href="{{ route('location.upazilas') }}"
-                               class="menu-link {{ @$subNavUpazilaActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">উপজেলা</span>
-                            </a>
-                            <a href="{{ route('location.post-offices') }}"
-                               class="menu-link {{ @$subNavPostOfficeActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">পোষ্ট অফিস</span>
-                            </a>
-                            <a href="{{ route('location.villages') }}"
-                               class="menu-link {{ @$subNavVillageActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">গ্রাম</span>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">জমির তথ্য</span>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ @$navLandInformationActiveCLass }}">
-					<span class="menu-link ">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                           <i class="fas fa-address-card"></i>
-                            <!--end::Svg Icon-->
-                        </span>
-
-                        <span class="menu-title">জমির তথ্য</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land_information.mouza.index') }}"
-                               class="menu-link {{ @$subNavMouzaActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">মৌজার নাম</span>
-                            </a>
-                        </div>
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land_information.khotiyan.index') }}"
-                               class="menu-link {{ @$subNavLandKhotiyanActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">খতিয়ান নাম</span>
-                            </a>
-                        </div>
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land_information.dag.index') }}"
-                               class="menu-link {{ @$subNavLandDagActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">দাগ নং</span>
-                            </a>
-                        </div>
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land_information.land_amount.index') }}"
-                               class="menu-link {{ @$subNavLandAmountActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">জমির পরিমান</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">বরাদ্দপ্রাপ্ত জমি</span>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ @$navLandLeaseActiveCLass }}">
-					<span class="menu-link ">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                           <i class="fas fa-address-card"></i>
-                            <!--end::Svg Icon-->
-                        </span>
-
-                        <span class="menu-title">বরাদ্দপ্রাপ্ত জমি</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land-lease.create') }}"
-                               class="menu-link {{ @$subNavAddLandLeaseActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">বরাদ্ধপ্রাপ্তদের ডাটা এন্ট্রি</span>
-                            </a>
-                        </div>
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.land-lease.index') }}"
-                               class="menu-link {{ @$subNavLandLeaseIndexActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">বরাদ্ধপ্রাপ্তদের তালিকা</span>
-                            </a>
-                        </div>
-                        <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.cancelledLandLeaseList') }}"
-                               class="menu-link {{ @$subNavCancelledLandLeaseIndexActiveCLass }}">
-                                <span class="menu-bullet">
-                                   <i class="fas fa-list-ul"></i>
-                                </span>
-                                <span class="menu-title">বাতিল বরাদ্ধপ্রাপ্তদের তালিকা</span>
+                                <span class="menu-title">নাগরিক সনদ আবেদন তালিকা</span>
                             </a>
                         </div>
                     </div>
@@ -394,38 +254,36 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">লিজ নবায়ন জমি</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">সেটিং</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ @$navNewLandLeaseActiveCLass }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navSettingActiveCLass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                           <i class="fas fa-address-card"></i>
-                            <!--end::Svg Icon-->
+                           <i class="fas fa-users"></i>
                         </span>
-
-                        <span class="menu-title">লিজ নবায়ন জমি</span>
+                        <span class="menu-title">সেটিং </span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.renew-lease-application.index') }}"
-                               class="menu-link {{ @$subNavNewLandLeaseListActiveCLass }}">
+                            <a href="{{ route('admin.setting.generalSetting') }}"
+                               class="menu-link {{ @$subNavGeneralSettingActiveCLass }}">
                                 <span class="menu-bullet">
                                    <i class="fas fa-list-ul"></i>
                                 </span>
-                                <span class="menu-title">লিজ নবায়ন আবেদনের তালিকা</span>
+                                <span class="menu-title">সাধারণ সেটিং</span>
                             </a>
                         </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('admin.renew-lease-application.cancelledRenewLandLeaseList') }}"
-                               class="menu-link {{ @$subNavCancelledRenewLandLeaseIndexActiveCLass }}">
+                            <a href="{{ route('admin.setting.citizenship') }}"
+                               class="menu-link {{ @$subNavCitizenshipSettingActiveCLass }}">
                                 <span class="menu-bullet">
                                    <i class="fas fa-list-ul"></i>
                                 </span>
-                                <span class="menu-title">বাতিল নবায়নের বরাদ্ধপ্রাপ্তদের তালিকা</span>
+                                <span class="menu-title">নাগরিকত্ব সেটিং</span>
                             </a>
                         </div>
                     </div>

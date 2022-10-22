@@ -5,43 +5,19 @@ use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Rakibhstu\Banglanumber\NumberToBangla;
 
-const LAND_NATURE_FILLED = 'filled';
-const LAND_NATURE_POND = 'pond';
 
 //Start
-const LAND_LEASE_APPLICATION_STATUS_PENDING = 'pending';
-const LAND_LEASE_APPLICATION_STATUS_APPROVED = 'approved';
-const LAND_LEASE_APPLICATION_STATUS_CANCELLED = 'cancelled';
-
-const LAND_LEASE_RENEWAL_STATUS_PENDING = 'pending';
-const LAND_LEASE_RENEWAL_STATUS_APPROVED = 'approved';
-const LAND_LEASE_RENEWAL_STATUS_CANCELLED = 'cancelled';
+const CITIZENSHIP_CERTIFICATE_STATUS_PENDING = 1;
+const CITIZENSHIP_CERTIFICATE_STATUS_APPROVED = 2;
+const CITIZENSHIP_CERTIFICATE_STATUS_CANCELLED = 3;
 //End
 
-function saveImage($destination, $attribute, $width = null, $height = null): string
+function saveImage($destination, $attribute): string
 {
-    if (!File::isDirectory(base_path() . '/public/uploads/' . $destination)) {
-        File::makeDirectory(base_path() . '/public/uploads/' . $destination, 0777, true, true);
-    }
-
-    if ($attribute->extension() == 'svg') {
-        $file_name = time() . '-' . $attribute->getClientOriginalName();
-        $path = 'uploads/' . $destination . '/' . $file_name;
-        $attribute->move(public_path('uploads/' . $destination . '/'), $file_name);
-        return $path;
-    }
-
-    $img = Image::make($attribute);
-    if ($width != null && $height != null && is_int($width) && is_int($height)) {
-        $img->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-    }
-
-    $returnPath = 'uploads/' . $destination . '/' . time() . '-' . Str::random(10) . '.' . $attribute->extension();
-    $savePath = base_path() . '/public/' . $returnPath;
-    $img->save($savePath);
-    return $returnPath;
+    $file_name = time() . '-' . $attribute->getClientOriginalName();
+    $path = 'uploads/' . $destination . '/' . $file_name;
+    $attribute->move(public_path('uploads/' . $destination . '/'), $file_name);
+    return $path;
 }
 
 function deleteFile($path)
@@ -58,13 +34,6 @@ function getFile($file)
 function numberParser($value)
 {
     return (float)str_replace(',', '', number_format(($value), 2));
-}
-
-function bn2en($number)
-{
-    $bn = ["১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০"];
-    $en = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-//    return str_replace(self::$bn, self::$en, $number);
 }
 
 function en2bnNumber($number)
@@ -113,9 +82,30 @@ function getBanglaDateFormat($value)
     return $date;
 }
 
+function getBanglaMonth($value)
+{
+    $en_months_from = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    $bn_months_to = ['জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+
+    $month  = str_replace($en_months_from, $bn_months_to, $value);
+    return $month;
+}
+
 function numberBnWord($value)
 {
     $num = new NumberToBangla();
     $text = $num->bnWord($value);
     return $text;
+}
+
+
+function getOption($option_key)
+{
+    $system_settings = config('settings');
+
+    if ($option_key && isset($system_settings[$option_key])) {
+        return $system_settings[$option_key];
+    } else {
+        return '';
+    }
 }
