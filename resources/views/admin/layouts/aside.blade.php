@@ -275,6 +275,28 @@
                             </a>
                         </div>
                     </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('admin.trade.business-nature.index') }}"
+                               class="menu-link {{ @$subNavBusinessNatureActiveClass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">ব্যবসা প্রকৃতি</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('admin.trade.business-type.index') }}"
+                               class="menu-link {{ @$subNavBusinessTypeActiveClass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">ব্যবসা ধরণ</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="menu-item">

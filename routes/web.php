@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\Trade\BusinessManagementController;
+use App\Http\Controllers\Admin\Trade\BusinessNatureController;
+use App\Http\Controllers\Admin\Trade\BusinessTypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\CitizenshipController;
@@ -69,6 +71,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::post('store', [BusinessManagementController::class, 'store'])->name('store');
                 Route::put('update/{id}', [BusinessManagementController::class, 'update'])->name('update');
                 Route::delete('delete/{id}', [BusinessManagementController::class, 'delete'])->name('delete');
+            });
+
+            Route::group(['prefix' => 'business-nature', 'as' => 'business-nature.'], function () {
+                Route::get('/', [BusinessNatureController::class, 'index'])->name('index');
+                Route::post('store', [BusinessNatureController::class, 'store'])->name('store');
+                Route::put('update/{id}', [BusinessNatureController::class, 'update'])->name('update');
+                Route::delete('delete/{id}', [BusinessNatureController::class, 'delete'])->name('delete');
+            });
+
+            Route::group(['prefix' => 'business-type', 'as' => 'business-type.'], function () {
+                Route::get('/', [BusinessTypeController::class, 'index'])->name('index');
+                Route::post('store', [BusinessTypeController::class, 'store'])->name('store');
+                Route::put('update/{id}', [BusinessTypeController::class, 'update'])->name('update');
+                Route::delete('delete/{id}', [BusinessTypeController::class, 'delete'])->name('delete');
             });
         });
     });
