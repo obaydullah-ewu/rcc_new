@@ -13,8 +13,35 @@ class PDFController extends Controller
 
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
-//        $pdf = PDF::loadView('pdf.citizenship-payment-details',  $data);
-//        return $pdf->stream('citizenship_payment.' . '.pdf');
-        return view('pdf.citizenship-payment-details',$data);
+//        $pdf = app('dompdf.wrapper');
+//        $context = stream_context_create([
+//            'ssl' => [
+//                'verify_peer' => FALSE,
+//                'verify_peer_name' => FALSE,
+//                'allow_self_signed' => TRUE,
+//            ]
+//        ]);
+//        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+//        $pdf->getDomPDF()->setHttpContext($context);
+//        $pdf = PDF::loadView('pdf.citizenship.payment-slip',  $data);
+//        $pdf->setPaper('A4', 'landscape');
+//        return $pdf->stream('citizenship_payment_slip.' . '.pdf');
+        return view('pdf.citizenship.payment-slip',$data);
+    }
+
+    public function citizenshipApplicationPDF($id)
+    {
+
+        $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
+        $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
+        return view('pdf.citizenship.application',$data);
+    }
+
+    public function citizenshipCertificatePDF($id)
+    {
+
+        $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
+        $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
+        return view('pdf.citizenship.certificate',$data);
     }
 }

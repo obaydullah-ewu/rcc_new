@@ -113,3 +113,5 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 Route::get('citizenship-payment-details/{id}', [PDFController::class, 'citizenshipPaymentDetailsPDF'])->name('citizenship.paymentDetails.pdf');
+Route::get('citizenship-application/{id}', [PDFController::class, 'citizenshipApplicationPDF'])->name('citizenship.application.pdf');
+Route::get('citizenship-certificate/{id}', [PDFController::class, 'citizenshipCertificatePDF'])->name('citizenship.certificate.pdf');

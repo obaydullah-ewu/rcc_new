@@ -117,7 +117,7 @@
                                     <td class="">
                                         <div class="d-flex flex-column">
                                             <!--begin::Show-->
-                                            <a href="" class="btn btn-info" style="width: 150px">
+                                            <a href="{{ route('citizenship.application.pdf', $citizenship->id) }}" class="btn btn-info" style="width: 150px">
                                                 আবেদন ফরম
                                             </a>
                                             <!--end::Show-->
@@ -127,11 +127,11 @@
                                             </a>
                                             <!--end::Show-->
                                             @if($citizenship->status == CITIZENSHIP_CERTIFICATE_STATUS_APPROVED)
-                                            <!--begin::Show-->
-                                            <a href="" class="btn btn-info mt-2" style="width: 150px">
-                                                সনদ ডাউনলোড
-                                            </a>
-                                            <!--end::Show-->
+                                                <!--begin::Show-->
+                                                <a href="{{ route('citizenship.certificate.pdf', $citizenship->id) }}" class="btn btn-info mt-2" style="width: 150px">
+                                                    সনদ ডাউনলোড
+                                                </a>
+                                                <!--end::Show-->
                                             @endif
                                         </div>
 
