@@ -87,8 +87,7 @@
                                     <td>
                                         নামঃ <b class="text-black">{{ $citizenship->name }}</b><br>
                                         পিতার নামঃ <b class="text-black">{{ $citizenship->father_name }}</b><br>
-                                        মাতার নামঃ <b class="text-black">{{ $citizenship->mother_name }}</b><br>
-                                        ওয়ার্ড নংঃ <b class="text-black">{{ en2bn($citizenship->ward_no) }}</b><br>
+                                        মাতার নামঃ <b class="text-black">{{ $citizenship->mother_name }}</b>
                                     </td>
                                     <td>
                                         মাধ্যমঃ <b class="text-black">

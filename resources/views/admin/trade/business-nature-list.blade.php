@@ -64,7 +64,6 @@
                                     </div>
                                 </th>
                                 <th class="min-w-100px text-left">Name</th>
-                                <th class="min-w-100px text-left">License Fee</th>
                                 <th class="min-w-100px text-left">Application Fees</th>
                                 <th class="min-w-100px text-left">New Fees</th>
                                 <th class="min-w-100px text-left">Renew Fees</th>
@@ -90,17 +89,15 @@
                                     </td>
                                     <!--end::Checkbox-->
                                     <td class="text-left">
-                                        <span class="text-gray-800"> {{ $businessNature->market_branch }}</span><br>
+                                        <span class="text-gray-800"> {{ $businessNature->name }}</span><br>
                                     </td>
                                     <td class="text-left">
-                                        <span class="text-gray-800">{{ "Ward-".$businessNature->ward_no }}</span>
+                                        <span class="text-gray-800">{{ $businessNature->application_fee }} টাকা</span>
                                     </td>
-                                    <td class="text-left">
-                                        <span class="text-gray-800">{{ $businessNature->location }}</span>
-                                    </td>
-                                    <td class="text-left">
-                                        <span class="text-gray-800">{{ $businessNature->market_name }}</span>
-                                    </td>
+                                    <td class="text-left"><span class="text-gray-800">{{ $businessNature->new_fee }} টাকা</span></td>
+                                    <td class="text-left"><span class="text-gray-800">{{ $businessNature->renew_fee }} টাকা</span></td>
+                                    <td class="text-left"><span class="text-gray-800">{{ $businessNature->signboard_fee }} টাকা</span></td>
+                                    <td class="text-left"><span class="text-gray-800">{{ $businessNature->license_vat }}%</span></td>
                                     <td>
                                         @if($businessNature->status == ACTIVE)
                                             <span class="btn badge bg-success fs-8 fw-bold my-2">Active</span>
@@ -113,7 +110,7 @@
                                         <div class="d-flex justify-content-center">
                                             <!--begin::Edit-->
                                             <a href="#" data-item="{{ $businessNature }}"
-                                               data-updateurl="{{ route('admin.trade.business-management.update', $businessNature->id) }}"
+                                               data-updateurl="{{ route('admin.trade.business-nature.update', $businessNature->id) }}"
                                                class="btn btn-icon btn-primary me-2 er edit" data-bs-toggle="modal"
                                                data-bs-target="#kt_modal_new_target_edit">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -153,7 +150,7 @@
                                             </button>
 
                                             <form
-                                                action="{{ route('admin.trade.business-management.delete', $businessNature->id) }}"
+                                                action="{{ route('admin.trade.business-nature.delete', $businessNature->id) }}"
                                                 method="post" id="delete_row_form_{{ $businessNature->id }}">
                                                 {{ method_field('DELETE') }}
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -212,48 +209,76 @@
                         <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                             <!--begin:Form-->
                             <form id="kt_modal_new_target_form" class="form"
-                                  action="{{ route('admin.trade.business-management.store') }}" method="post">
+                                  action="{{ route('admin.trade.business-nature.store') }}" method="post">
                                 @csrf
                                 <!--begin::Heading-->
                                 <div class="mb-13 text-center">
                                     <!--begin::Title-->
-                                    <h1 class="mb-3 modalHeaderH1">ব্যবসা ব্যবস্থাপনা যুক্ত করুন</h1>
+                                    <h1 class="mb-3 modalHeaderH1">ব্যবসা প্রকৃতি যুক্ত করুন</h1>
                                     <!--end::Title-->
                                 </div>
                                 <!--end::Heading-->
                                 <div class="row">
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">অঞ্চল / বাজার শাখা</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Name</label>
                                             <div class="input-group">
-                                                <input type="text" name="market_branch" placeholder="অঞ্চল / বাজার শাখা" class="form-control"/>
+                                                <input type="text" name="name" placeholder="name" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">ওয়ার্ড নম্বর</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Application Fee</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Ward-</span>
+                                                <input type="number" min="0" name="application_fee" placeholder="application fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
                                                 </div>
-                                                <input type="number" min="1" name="ward_no" placeholder="ওয়ার্ড নম্বর" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">ব্যবসায়ের এলাকা</label>
+                                            <label class="required fs-6 fw-bolder mb-2">New Fee</label>
                                             <div class="input-group">
-                                                <input type="text" name="location" placeholder="ব্যবসায়ের এলাকা" class="form-control"/>
+                                                <input type="number" min="0" name="new_fee" placeholder="new fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">মার্কেটের নাম</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Renew Fee</label>
                                             <div class="input-group">
-                                                <input type="text" name="market_name" placeholder="মার্কেটের নাম" class="form-control"/>
+                                                <input type="number" min="0" name="renew_fee" placeholder="renew fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-8 fv-row col-md-6">
+                                        <div class="form-group">
+                                            <label class="required fs-6 fw-bolder mb-2">Signboard Fee</label>
+                                            <div class="input-group">
+                                                <input type="number" min="0" name="signboard_fee" placeholder="signboard fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-8 fv-row col-md-6">
+                                        <div class="form-group">
+                                            <label class="required fs-6 fw-bolder mb-2">License Vat</label>
+                                            <div class="input-group">
+                                                <input type="number" min="0" name="license_vat" placeholder="License fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">%</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -320,43 +345,71 @@
                                 <!--begin::Heading-->
                                 <div class="mb-13 text-center">
                                     <!--begin::Title-->
-                                    <h1 class="mb-3 modalHeaderH1">ব্যবসা ব্যবস্থাপনা আপডেট করুন</h1>
+                                    <h1 class="mb-3 modalHeaderH1">ব্যবসা প্রকৃতি আপডেট করুন</h1>
                                     <!--end::Title-->
                                 </div>
                                 <!--end::Heading-->
                                 <div class="row">
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">অঞ্চল / বাজার শাখা</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Name</label>
                                             <div class="input-group">
-                                                <input type="text" name="market_branch" placeholder="অঞ্চল / বাজার শাখা" class="form-control"/>
+                                                <input type="text" name="name" placeholder="name" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">ওয়ার্ড নম্বর</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Application Fee</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Ward-</span>
+                                                <input type="number" min="0" name="application_fee" placeholder="application fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
                                                 </div>
-                                                <input type="number" min="1" name="ward_no" placeholder="ওয়ার্ড নম্বর" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">ব্যবসায়ের এলাকা</label>
+                                            <label class="required fs-6 fw-bolder mb-2">New Fee</label>
                                             <div class="input-group">
-                                                <input type="text" name="location" placeholder="ব্যবসায়ের এলাকা" class="form-control"/>
+                                                <input type="number" min="0" name="new_fee" placeholder="new fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column mb-8 fv-row col-md-6">
                                         <div class="form-group">
-                                            <label class="required fs-6 fw-bolder mb-2">মার্কেটের নাম</label>
+                                            <label class="required fs-6 fw-bolder mb-2">Renew Fee</label>
                                             <div class="input-group">
-                                                <input type="text" name="market_name" placeholder="মার্কেটের নাম" class="form-control"/>
+                                                <input type="number" min="0" name="renew_fee" placeholder="renew fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-8 fv-row col-md-6">
+                                        <div class="form-group">
+                                            <label class="required fs-6 fw-bolder mb-2">Signboard Fee</label>
+                                            <div class="input-group">
+                                                <input type="number" min="0" name="signboard_fee" placeholder="signboard fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column mb-8 fv-row col-md-6">
+                                        <div class="form-group">
+                                            <label class="required fs-6 fw-bolder mb-2">License Vat</label>
+                                            <div class="input-group">
+                                                <input type="number" min="0" name="license_vat" placeholder="License fee" class="form-control"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">%</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -403,10 +456,12 @@
                 e.preventDefault();
                 const modal = $('#kt_modal_new_target_edit');
                 var item = $(this).data('item');
-                modal.find('input[name=market_branch]').val(item.market_branch)
-                modal.find('input[name=ward_no]').val(item.ward_no)
-                modal.find('input[name=location]').val(item.location)
-                modal.find('input[name=market_name]').val(item.market_name)
+                modal.find('input[name=name]').val(item.name)
+                modal.find('input[name=application_fee]').val(item.application_fee)
+                modal.find('input[name=new_fee]').val(item.new_fee)
+                modal.find('input[name=renew_fee]').val(item.renew_fee)
+                modal.find('input[name=signboard_fee]').val(item.signboard_fee)
+                modal.find('input[name=license_vat]').val(item.license_vat)
                 modal.find('select[name=status]').val(item.status)
                 let route = $(this).data('updateurl');
                 $('#kt_modal_new_target_edit_form').attr("action", route)

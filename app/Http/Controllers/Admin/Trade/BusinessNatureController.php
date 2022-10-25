@@ -21,7 +21,6 @@ class BusinessNatureController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'license_fee' => 'required',
             'application_fee' => 'required',
             'new_fee' => 'required',
             'renew_fee' => 'required',
@@ -32,7 +31,6 @@ class BusinessNatureController extends Controller
 
         $businessNature = new BusinessNature();
         $businessNature->name = $request->name;
-        $businessNature->license_fee = $request->license_fee;
         $businessNature->application_fee = $request->application_fee;
         $businessNature->new_fee = $request->new_fee;
         $businessNature->renew_fee = $request->renew_fee;
@@ -48,7 +46,6 @@ class BusinessNatureController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'license_fee' => 'required',
             'application_fee' => 'required',
             'new_fee' => 'required',
             'renew_fee' => 'required',
@@ -59,7 +56,6 @@ class BusinessNatureController extends Controller
 
         $businessNature = BusinessNature::findOrFail($id);
         $businessNature->name = $request->name;
-        $businessNature->license_fee = $request->license_fee;
         $businessNature->application_fee = $request->application_fee;
         $businessNature->new_fee = $request->new_fee;
         $businessNature->renew_fee = $request->renew_fee;

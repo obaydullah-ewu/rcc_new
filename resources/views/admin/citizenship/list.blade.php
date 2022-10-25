@@ -72,7 +72,6 @@
                                         নামঃ <b class="text-black">{{ $citizenship->name }}</b><br>
                                         পিতার নামঃ <b class="text-black">{{ $citizenship->father_name }}</b><br>
                                         মাতার নামঃ <b class="text-black">{{ $citizenship->mother_name }}</b><br>
-                                        ওয়ার্ড নংঃ <b class="text-black">{{ en2bn($citizenship->ward_no) }}</b><br>
                                     </td>
                                     <td>
                                         জেলা নামঃ <b class="text-black">{{ $citizenship->district }}</b><br>
@@ -92,7 +91,6 @@
                                         <br>
                                         টাকার পরিমানঃ <b class="text-black">{{ en2bn($citizenship->total_fee) . ' টাকা' }}</b><br>
                                         তারিখঃ <b class="text-black">{{ getBanglaDateFormat($citizenship->date) }}</b><br>
-                                        ওয়ার্ড নংঃ <b class="text-black">{{ en2bn($citizenship->ward_no) }}</b><br>
                                         @if($citizenship->payment_method == 'bankDraft')
                                             <a href="{{ getFile($citizenship->bank_slip) }}" class="badge bg-success">Click for Bank Slip</a>
                                         @endif

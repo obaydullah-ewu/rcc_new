@@ -16,7 +16,6 @@ class CreateBusinessNaturesTable extends Migration
         Schema::create('business_natures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('license_fee');
             $table->string('application_fee');
             $table->string('new_fee');
             $table->string('renew_fee');
