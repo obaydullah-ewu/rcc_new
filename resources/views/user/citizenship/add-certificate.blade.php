@@ -28,49 +28,65 @@
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পিতার নাম </label>
-                                            <input type="text" name="father_name" class="form-control form-control-solid" placeholder="পিতার নাম" value="{{ @Auth::user()->father_name_bn }}" required>
+                                            <input type="text" name="father_name" class="form-control form-control-solid" placeholder="পিতার নাম"
+                                                   value="{{ @Auth::user()->father_name_bn }}" required>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">মাতার নাম </label>
-                                            <input type="text" name="mother_name" class="form-control form-control-solid" placeholder="মাতার নাম" value="{{ @Auth::user()->mother_name_bn }}" required>
+                                            <input type="text" name="mother_name" class="form-control form-control-solid" placeholder="মাতার নাম"
+                                                   value="{{ @Auth::user()->mother_name_bn }}" required>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">মোবাইল নম্বর</label>
-                                            <input type="text" name="mobile_number" class="form-control form-control-solid" placeholder="মোবাইল নম্বর" value="{{ @Auth::user()->mobile_number }}" required>
+                                            <input type="text" name="mobile_number" class="form-control form-control-solid" placeholder="মোবাইল নম্বর"
+                                                   value="{{ @Auth::user()->mobile_number }}" required>
                                         </div>
 
                                         <div class="form-group mb-4 col-md-4">
-                                            <label class="fw-bolder">জাতীয় পরিচয় পত্র নাম্বার</label>
-                                            <input type="text" name="nid" class="form-control form-control-solid" placeholder="জাতীয় পরিচয় পত্র নাম্বার" value="{{ @Auth::user()->nid }}" required>
+                                            <label class="required fw-bolder">জাতীয় পরিচয় পত্র নাম্বার</label>
+                                            <input type="text" name="nid" class="form-control form-control-solid"
+                                                   placeholder="জাতীয় পরিচয় পত্র নাম্বার" value="{{ @Auth::user()->nid }}">
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
-                                            <label class="fw-bolder">জন্ম সনদ নাম্বার</label>
-                                            <input type="text" name="birth_certificate_no" class="form-control form-control-solid" placeholder="জন্ম সনদ নাম্বার" value="{{ @Auth::user()->birth_certificate_no }}" required>
+                                            <label class="required fw-bolder">জন্ম সনদ নাম্বার</label>
+                                            <input type="text" name="birth_certificate_no" class="form-control form-control-solid"
+                                                   placeholder="জন্ম সনদ নাম্বার" value="{{ @Auth::user()->birth_certificate_no }}">
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">জেলা </label>
-                                            <input type="text" name="district" class="form-control form-control-solid" placeholder="জেলা " value="{{ @Auth::user()->userPermanentAddress->per_district_bn }}" required>
+                                            <input type="text" name="district" class="form-control form-control-solid" placeholder="জেলা "
+                                                   value="{{ @Auth::user()->userPermanentAddress->perDistrict->name }}" required>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
-                                            <label class="required fw-bolder">উপজেলা / থানা </label>
-                                            <input type="text" name="upazila" class="form-control form-control-solid" placeholder="উপজেলা" value="{{ @Auth::user()->userPermanentAddress->per_upazila_bn }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-4">
-                                            <label class="required fw-bolder">ইউনিয়ন </label>
-                                            <input type="text" name="union" class="form-control form-control-solid" placeholder="ইউনিয়ন" value="{{ @Auth::user()->userPermanentAddress->per_union_bn }}" required>
+                                            <label class="required fw-bolder">থানা </label>
+                                            <input type="text" name="upazila" class="form-control form-control-solid" placeholder="থানা"
+                                                   value="{{ @Auth::user()->userPermanentAddress->perUpazila->name }}" required>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পোষ্ট অফিস </label>
-                                            <input type="text" name="post_office" class="form-control form-control-solid" placeholder="পোষ্ট অফিস" value="{{ @Auth::user()->userPermanentAddress->per_post_office_bn }}" required>
+                                            <input type="text" name="post_office" class="form-control form-control-solid" placeholder="পোষ্ট অফিস"
+                                                   value="{{ @Auth::user()->userPermanentAddress->perPostOffice->name }}" required>
                                         </div>
 
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">ওয়ার্ড নং </label>
-                                            <input type="number" name="ward_no" class="form-control form-control-solid" placeholder="ওয়ার্ড নং" value="{{ @Auth::user()->userPermanentAddress->per_ward_no_bn }}" required>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text fw-bolder">ওয়ার্ড-</span>
+                                                </div>
+                                                <input type="number" name="ward_no" class="form-control form-control-solid" placeholder="ওয়ার্ড নং"
+                                                       value="{{ Auth::user()->userPermanentAddress->perWard->name }}" required>
+                                            </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
-                                            <label class="required fw-bolder">গ্রাম/মহল্লা </label>
-                                            <input type="text" name="village" class="form-control form-control-solid" placeholder="গ্রাম/মহল্লা" value="{{ @Auth::user()->userPermanentAddress->per_village_bn }}" required>
+                                            <label class="required fw-bolder">মহল্লা </label>
+                                            <input type="text" name="village" class="form-control form-control-solid" placeholder="মহল্লা"
+                                                   value="{{ @Auth::user()->userPermanentAddress->perVillage->name }}" required>
+                                        </div>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class="required fw-bolder">হোল্ডিং নম্বর </label>
+                                            <input type="text" name="holding_no" class="form-control form-control-solid" placeholder="হোল্ডিং নম্বর"
+                                                   value="{{ @Auth::user()->userPermanentAddress->per_holding }}">
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +120,9 @@
                                                         <div class="input-group-prepend" style="width: 120px">
                                                             <span class="input-group-text fw-bolder">ফি</span>
                                                         </div>
-                                                        <input type="number" name="certificate_fee" value="{{ (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) }}" step="any" min="1" class="form-control" placeholder="0.00" readonly>
+                                                        <input type="number" name="certificate_fee"
+                                                               value="{{ (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) }}"
+                                                               step="any" min="1" class="form-control" placeholder="0.00" readonly>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fw-bolder">টাকা</span>
                                                         </div>
@@ -117,7 +135,9 @@
                                                         <div class="input-group-prepend" style="width: 120px">
                                                             <span class="input-group-text fw-bolder">তথ্য কেন্দ্র ফি</span>
                                                         </div>
-                                                        <input type="number" name="information_centre_fee" value="{{ empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee') }}" step="any" min="1" class="form-control" placeholder="0.00" readonly>
+                                                        <input type="number" name="information_centre_fee"
+                                                               value="{{ empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee') }}"
+                                                               step="any" min="1" class="form-control" placeholder="0.00" readonly>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fw-bolder">টাকা</span>
                                                         </div>
@@ -130,7 +150,9 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text fw-bolder" style="width: 120px">মোট ফি</span>
                                                         </div>
-                                                        <input type="number" name="total_fee" value="{{ (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) + (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}" step="any" min="1" class="form-control" placeholder="0.00" readonly>
+                                                        <input type="number" name="total_fee"
+                                                               value="{{ (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) + (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}"
+                                                               step="any" min="1" class="form-control" placeholder="0.00" readonly>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fw-bolder">টাকা</span>
                                                         </div>
@@ -160,9 +182,11 @@
                                             <div class="form-group mb-4 col-md-6">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text fw-bolder" style="width: 200px">পে অর্ডার / ব্যাংক ড্রাফট নং</span>
+                                                        <span class="input-group-text fw-bolder"
+                                                              style="width: 200px">পে অর্ডার / ব্যাংক ড্রাফট নং</span>
                                                     </div>
-                                                    <input type="text" name="bank_draft_no" class="form-control bank_draft_no" placeholder="পে অর্ডার / ব্যাংক ড্রাফট নং">
+                                                    <input type="text" name="bank_draft_no" class="form-control bank_draft_no"
+                                                           placeholder="পে অর্ডার / ব্যাংক ড্রাফট নং">
                                                 </div>
                                             </div>
                                         </div>
@@ -204,7 +228,8 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text fw-bolder" style="width: 200px">লেনদেন নম্বর লিখুন</span>
                                                     </div>
-                                                    <input type="text" name="mobile_banking_number" class="form-control mobile_banking_number" placeholder="লেনদেন নম্বর লিখুন">
+                                                    <input type="text" name="mobile_banking_number" class="form-control mobile_banking_number"
+                                                           placeholder="লেনদেন নম্বর লিখুন">
                                                 </div>
                                             </div>
                                         </div>
@@ -275,9 +300,9 @@
 
 @push('script')
     <script>
-        $("input[name='payment_method']").click(function(){
+        $("input[name='payment_method']").click(function () {
             var payment_method = $("input[name='payment_method']:checked").val();
-            if(payment_method){
+            if (payment_method) {
                 if (payment_method == 'bankDraft') {
                     $('.bankDraftDiv').removeClass('d-none');
                     $('.mobileBankingDiv').addClass('d-none');
@@ -291,7 +316,7 @@
                     $('.trx_id').removeAttr('required');
                     $('.rashid_no').removeAttr('required');
                     $('.serial_no').removeAttr('required');
-                } else if(payment_method == 'bkash' || payment_method == 'nagad') {
+                } else if (payment_method == 'bkash' || payment_method == 'nagad') {
                     $('.bankDraftDiv').addClass('d-none');
                     $('.mobileBankingDiv').removeClass('d-none');
                     $('.cashDiv').addClass('d-none');
@@ -304,7 +329,7 @@
                     $('.rashid_no').removeAttr('required');
                     $('.serial_no').removeAttr('required');
                     $('.bank_slip').removeAttr('required');
-                } else if(payment_method == 'cash') {
+                } else if (payment_method == 'cash') {
                     $('.bankDraftDiv').addClass('d-none');
                     $('.mobileBankingDiv').addClass('d-none');
                     $('.cashDiv').removeClass('d-none');

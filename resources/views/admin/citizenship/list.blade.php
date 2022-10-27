@@ -72,14 +72,15 @@
                                         নামঃ <b class="text-black">{{ $citizenship->name }}</b><br>
                                         পিতার নামঃ <b class="text-black">{{ $citizenship->father_name }}</b><br>
                                         মাতার নামঃ <b class="text-black">{{ $citizenship->mother_name }}</b><br>
+                                        মোবাইল নম্বরঃ <b class="text-black">{{ $citizenship->mobile_number }}</b><br>
                                     </td>
                                     <td>
                                         জেলা নামঃ <b class="text-black">{{ $citizenship->district }}</b><br>
-                                        উপজেলা নামঃ <b class="text-black">{{ $citizenship->upazila }}</b><br>
-                                        ইউনিয়ন নংঃ <b class="text-black">{{ $citizenship->union }}</b><br>
-                                        পোস্ট অফিস নংঃ <b class="text-black">{{ $citizenship->post_office }}</b><br>
+                                        থানা নামঃ <b class="text-black">{{ $citizenship->upazila }}</b><br>
+                                        @if($citizenship->post_office) পোস্ট অফিসঃ <b class="text-black">{{ $citizenship->post_office }}</b><br> @endif
                                         ওয়ার্ড নংঃ <b class="text-black">{{ en2bn($citizenship->ward_no) }}</b><br>
-                                        গ্রামঃ <b class="text-black">{{ $citizenship->village }}</b><br>
+                                        @if($citizenship->village) মহল্লাঃ <b class="text-black">{{ $citizenship->village }}</b><br> @endif
+                                        @if($citizenship->holding_no) হোল্ডিং নম্বরঃ <b class="text-black">{{ $citizenship->holding_no }}</b><br> @endif
                                     </td>
                                     <td>
                                         মাধ্যমঃ <b class="text-black">
@@ -87,8 +88,15 @@
                                             {{ $citizenship->payment_method == 'bkash' ? 'বিকাশ' : null}}
                                             {{ $citizenship->payment_method == 'nagad' ? 'নগদ' : null}}
                                             {{ $citizenship->payment_method == 'cash' ? 'ক্যাশ' : null}}
-                                        </b>
+                                            </b>
                                         <br>
+                                        @if($citizenship->payment_method == 'bkash' || $citizenship->payment_method == 'nagad')
+                                            লেনদেন নম্বরঃ <b class="text-black">{{ $citizenship->mobile_banking_number }}</b><br>
+                                            ট্রানস্যাকশন আইডিঃ <b class="text-black">{{ $citizenship->trx_id }}</b><br>
+                                        @elseif($citizenship->payment_method == 'cash')
+                                            রশিদ নম্বরঃ <b class="text-black">{{ $citizenship->rashid_no }}</b><br>
+                                            সিরিয়াল নংঃ <b class="text-black">{{ $citizenship->serial_no }}</b><br>
+                                        @endif
                                         টাকার পরিমানঃ <b class="text-black">{{ en2bn($citizenship->total_fee) . ' টাকা' }}</b><br>
                                         তারিখঃ <b class="text-black">{{ getBanglaDateFormat($citizenship->date) }}</b><br>
                                         @if($citizenship->payment_method == 'bankDraft')

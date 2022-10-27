@@ -28,6 +28,7 @@ class CreateCitizenshipCertificatesTable extends Migration
             $table->string('post_office')->nullable();
             $table->string('ward_no')->nullable();
             $table->string('village')->nullable();
+            $table->string('holding_no')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('certificate_fee')->nullable();
             $table->string('information_centre_fee')->nullable();

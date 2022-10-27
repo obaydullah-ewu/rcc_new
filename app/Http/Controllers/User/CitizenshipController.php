@@ -37,8 +37,7 @@ class CitizenshipController extends Controller
             'father_name' => 'required',
             'mother_name' => 'required',
             'mobile_number' => 'required',
-            'nid' => 'required',
-            'birth_certificate_no' => 'required',
+            'birth_certificate_no' => 'required_without:nid',
             'district' => 'required',
             'upazila' => 'required',
             'union' => 'required',
@@ -50,6 +49,8 @@ class CitizenshipController extends Controller
             'information_centre_fee' => 'required',
             'total_fee' => 'required',
             'date' => 'required',
+        ],[
+            'birth_certificate_no.required_without' => 'জাতীয় পরিচয় পত্র নম্বর অথবা জন্ম সনদ নম্বর দিতে হবে'
         ]);
 
         if ($request->payment_method == 'bankDraft') {
@@ -87,6 +88,7 @@ class CitizenshipController extends Controller
         $citizen->post_office = $request->post_office;
         $citizen->ward_no = $request->ward_no;
         $citizen->village = $request->village;
+        $citizen->holding_no = $request->holding_no;
         $citizen->payment_method = $request->payment_method;
         $certificate_fee = (empty(getOption('certificate_fee')) ? 0 : getOption('certificate_fee'));
         $information_centre_fee = (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee'));
