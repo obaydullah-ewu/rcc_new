@@ -16,20 +16,13 @@ class CreateUserPermanentAddressesTable extends Migration
         Schema::create('user_permanent_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('per_holding_en')->nullable();
-            $table->string('per_holding_bn')->nullable();
-            $table->string('per_village_en')->nullable();
-            $table->string('per_village_bn')->nullable();
-            $table->string('per_ward_no_en')->nullable();
-            $table->string('per_ward_no_bn')->nullable();
-            $table->string('per_post_office_en')->nullable();
-            $table->string('per_post_office_bn')->nullable();
-            $table->string('per_union_en')->nullable();
-            $table->string('per_union_bn')->nullable();
-            $table->string('per_upazila_en')->nullable();
-            $table->string('per_upazila_bn')->nullable();
-            $table->string('per_district_en')->nullable();
-            $table->string('per_district_bn')->nullable();
+            $table->string('per_holding')->nullable();
+            $table->string('per_village')->nullable();
+            $table->string('per_ward')->nullable();
+            $table->string('per_post_office')->nullable();
+            $table->string('per_upazila')->nullable();
+            $table->string('per_district')->nullable();
+            $table->string('per_division')->nullable();
             $table->timestamps();
         });
     }

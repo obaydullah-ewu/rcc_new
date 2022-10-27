@@ -62,6 +62,7 @@
                                     </div>
                                 </th>
                                 <th class="min-w-100px text-center">মহল্লা নাম</th>
+                                <th class="min-w-100px text-center">ওয়ার্ড নং</th>
                                 <th class="min-w-100px text-center">পোস্ট অফিস নাম</th>
                                 <th class="min-w-100px text-center">উপজেলা নাম</th>
                                 <th class="min-w-100px text-center">জেলা নাম</th>
@@ -86,6 +87,9 @@
                                     <!--end::Checkbox-->
                                     <td class="text-center">
                                         <span class="text-gray-800">{{ $village->name }}</span><br>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-gray-800">{{ 'ওয়ার্ড-'.en2bn(@$village->ward->name) }}</span><br>
                                     </td>
                                     <td class="text-center">
                                         <span class="text-gray-800">{{ @$village->postOffice->name }}</span><br>

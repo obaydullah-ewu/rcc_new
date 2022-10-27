@@ -16,20 +16,13 @@ class CreateUserPresentAddressesTable extends Migration
         Schema::create('user_present_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('pre_holding_en')->nullable();
-            $table->string('pre_holding_bn')->nullable();
-            $table->string('pre_village_en')->nullable();
-            $table->string('pre_village_bn')->nullable();
-            $table->string('pre_ward_no_en')->nullable();
-            $table->string('pre_ward_no_bn')->nullable();
-            $table->string('pre_post_office_en')->nullable();
-            $table->string('pre_post_office_bn')->nullable();
-            $table->string('pre_union_en')->nullable();
-            $table->string('pre_union_bn')->nullable();
-            $table->string('pre_upazila_en')->nullable();
-            $table->string('pre_upazila_bn')->nullable();
-            $table->string('pre_district_en')->nullable();
-            $table->string('pre_district_bn')->nullable();
+            $table->string('pre_holding')->nullable();
+            $table->string('pre_village')->nullable();
+            $table->string('pre_ward')->nullable();
+            $table->string('pre_post_office')->nullable();
+            $table->string('pre_upazila')->nullable();
+            $table->string('pre_district')->nullable();
+            $table->string('pre_division')->nullable();
             $table->timestamps();
         });
     }

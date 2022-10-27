@@ -354,7 +354,7 @@
                                 <span class="menu-bullet">
                                    <i class="fas fa-list-ul"></i>
                                 </span>
-                                <span class="menu-title">গ্রাম</span>
+                                <span class="menu-title">গ্রাম/মহল্লা</span>
                             </a>
 
                         </div>
