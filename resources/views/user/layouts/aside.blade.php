@@ -174,6 +174,42 @@
                         </div>
                     </div>
                 </div>
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">ই-ট্রেড লাইসেন্স</span>
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navTradeLicenseActiveClass }}">
+					<span class="menu-link ">
+                        <span class="menu-icon">
+                           <i class="fas fa-users"></i>
+                        </span>
+                        <span class="menu-title">ই-ট্রেড লাইসেন্স</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('user.trade-license.index') }}"
+                               class="menu-link {{ @$subNavTradeLicenseListActiveClass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">ই-ট্রেড লাইসেন্স তালিকা</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('user.trade-license.create') }}"
+                               class="menu-link {{ @$subNavCreateTradeLicenseActiveClass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">ই-ট্রেড লাইসেন্স আবেদন</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <!--end::Menu-->

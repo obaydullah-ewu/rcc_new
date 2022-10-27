@@ -298,6 +298,68 @@
                         </div>
                     </div>
                 </div>
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">ঠিকানা</span>
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navLocationActiveCLass }}">
+					<span class="menu-link ">
+                        <span class="menu-icon">
+                           <i class="fas fa-address-card"></i>
+                        </span>
+
+                        <span class="menu-title">ঠিকানা</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('location.divisions') }}"
+                               class="menu-link {{ @$subNavDivisionActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">বিভাগ</span>
+                            </a>
+                            <a href="{{ route('location.districts') }}"
+                               class="menu-link {{ @$subNavDistrictActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">জেলা</span>
+                            </a>
+                            <a href="{{ route('location.upazilas') }}"
+                               class="menu-link {{ @$subNavUpazilaActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">উপজেলা</span>
+                            </a>
+                            <a href="{{ route('location.post-offices') }}"
+                               class="menu-link {{ @$subNavPostOfficeActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">পোষ্ট অফিস</span>
+                            </a>
+                            <a href="{{ route('location.wards') }}"
+                               class="menu-link {{ @$subNavWardActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">ওয়ার্ড</span>
+                            </a>
+                            <a href="{{ route('location.villages') }}"
+                               class="menu-link {{ @$subNavVillageActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">গ্রাম</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">

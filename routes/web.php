@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\User\CitizenshipController as UserCitizenshipController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
+use App\Http\Controllers\User\Trade\TradeLicenseController as UserTradeLicenseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -109,8 +111,56 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('application', [UserCitizenshipController::class, 'addCitizenshipApplication'])->name('add');
             Route::post('application/store', [UserCitizenshipController::class, 'citizenshipApplicationStore'])->name('apply');
         });
+
+        Route::group(['prefix' => 'trade-license', 'as' => 'trade-license.'], function () {
+           Route::get('/', [UserTradeLicenseController::class, 'index'])->name('index');
+            Route::get('create', [UserTradeLicenseController::class, 'create'])->name('create');
+
+        });
     });
 });
+
+//Start:: Location
+Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
+    Route::get('divisions', [LocationController::class, 'divisions'])->name('divisions');
+    Route::post('division/store', [LocationController::class, 'divisionStore'])->name('division.store');
+    Route::put('division/update/{id}', [LocationController::class, 'divisionUpdate'])->name('division.update');
+    Route::delete('division/delete/{id}', [LocationController::class, 'divisionDelete'])->name('division.delete');
+
+    Route::get('districts', [LocationController::class, 'districts'])->name('districts');
+    Route::post('district/store', [LocationController::class, 'districtStore'])->name('district.store');
+    Route::put('district/update/{id}', [LocationController::class, 'districtUpdate'])->name('district.update');
+    Route::delete('district/delete/{id}', [LocationController::class, 'districtDelete'])->name('district.delete');
+
+    Route::get('upazilas', [LocationController::class, 'upazilas'])->name('upazilas');
+    Route::post('upazila/store', [LocationController::class, 'upazilaStore'])->name('upazila.store');
+    Route::put('upazila/update/{id}', [LocationController::class, 'upazilaUpdate'])->name('upazila.update');
+    Route::delete('upazila/delete/{id}', [LocationController::class, 'upazilaDelete'])->name('upazila.delete');
+
+    Route::get('wards', [LocationController::class, 'wards'])->name('wards');
+    Route::post('ward/store', [LocationController::class, 'wardStore'])->name('ward.store');
+    Route::put('ward/update/{id}', [LocationController::class, 'wardUpdate'])->name('ward.update');
+    Route::delete('ward/delete/{id}', [LocationController::class, 'wardDelete'])->name('ward.delete');
+
+    Route::get('post-offices', [LocationController::class, 'postOffices'])->name('post-offices');
+    Route::post('post-office/store', [LocationController::class, 'postOfficeStore'])->name('postOffice.store');
+    Route::put('post-office/update/{id}', [LocationController::class, 'postOfficeUpdate'])->name('postOffice.update');
+    Route::delete('post-office/delete/{id}', [LocationController::class, 'postOfficeDelete'])->name('postOffice.delete');
+
+    Route::get('villages', [LocationController::class, 'villages'])->name('villages');
+    Route::post('village/store', [LocationController::class, 'villageStore'])->name('village.store');
+    Route::put('village/update/{id}', [LocationController::class, 'villageUpdate'])->name('village.update');
+    Route::delete('village/delete/{id}', [LocationController::class, 'villageDelete'])->name('village.delete');
+
+    //Start:: Get Division to District, District to Upazila, Upazila to Post Office, Post Office to Village
+    Route::get('get-districts', [LocationController::class, 'getDistricts'])->name('getDistrict');
+    Route::get('get-upazilas', [LocationController::class, 'getUpazilas'])->name('getUpazila');
+    Route::get('get-post-offices', [LocationController::class, 'getPostOffices'])->name('getPostOffice');
+    Route::get('get-wards', [LocationController::class, 'getWards'])->name('getWard');
+    Route::get('get-villages', [LocationController::class, 'getVillages'])->name('getVillages');
+    //End:: Get Division to District, District to Upazila, Upazila to Post Office, Post Office to Village
+});
+//End:: Location
 
 Route::get('citizenship-payment-details/{id}', [PDFController::class, 'citizenshipPaymentDetailsPDF'])->name('citizenship.paymentDetails.pdf');
 Route::get('citizenship-application/{id}', [PDFController::class, 'citizenshipApplicationPDF'])->name('citizenship.application.pdf');

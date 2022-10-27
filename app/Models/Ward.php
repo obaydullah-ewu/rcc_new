@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Upazila extends Model
+class Ward extends Model
 {
     use HasFactory;
 
@@ -18,5 +18,10 @@ class Upazila extends Model
     public function district(): BelongsTo
     {
         return $this->belongsTo(District::class);
+    }
+
+    public function upazila(): BelongsTo
+    {
+        return $this->belongsTo(Upazila::class);
     }
 }

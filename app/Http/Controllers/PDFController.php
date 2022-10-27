@@ -10,7 +10,6 @@ class PDFController extends Controller
 {
     public function citizenshipPaymentDetailsPDF($id)
     {
-
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
 //        $pdf = app('dompdf.wrapper');
@@ -31,17 +30,15 @@ class PDFController extends Controller
 
     public function citizenshipApplicationPDF($id)
     {
-
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
-        $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
+        $data['citizenship'] = CitizenshipCertificate::where(['status' => CITIZENSHIP_CERTIFICATE_STATUS_PENDING, 'id' => $id])->firstOrFail();
         return view('pdf.citizenship.application',$data);
     }
 
     public function citizenshipCertificatePDF($id)
     {
-
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
-        $data['citizenship'] = CitizenshipCertificate::where(['status' => 1, 'id' => $id])->firstOrFail();
+        $data['citizenship'] = CitizenshipCertificate::where(['status' => CITIZENSHIP_CERTIFICATE_STATUS_APPROVED, 'id' => $id])->firstOrFail();
         return view('pdf.citizenship.certificate',$data);
     }
 }
