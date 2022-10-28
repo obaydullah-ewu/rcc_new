@@ -144,6 +144,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row mobileBankChargeDiv d-none">
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend" style="width: 120px">
+                                                            <span class="input-group-text fw-bolder">ব্যাঙ্কিং চার্জ ফি</span>
+                                                        </div>
+                                                        <input type="number" name="information_centre_fee"
+                                                               value="{{ empty(getOption('mobile_banking_charge_fee')) ? 0 : getOption('mobile_banking_charge_fee') }}"
+                                                               step="any" min="1" class="form-control" placeholder="0.00" readonly>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text fw-bolder">টাকা</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="form-group mb-4 col-md-6">
                                                     <div class="input-group">
@@ -151,8 +166,8 @@
                                                             <span class="input-group-text fw-bolder" style="width: 120px">মোট ফি</span>
                                                         </div>
                                                         <input type="number" name="total_fee"
-                                                               value="{{ (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) + (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}"
-                                                               step="any" min="1" class="form-control" placeholder="0.00" readonly>
+                                                               value=""
+                                                               step="any" min="1" class="form-control total_fee" placeholder="0.00" readonly>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fw-bolder">টাকা</span>
                                                         </div>
@@ -316,6 +331,12 @@
                     $('.trx_id').removeAttr('required');
                     $('.rashid_no').removeAttr('required');
                     $('.serial_no').removeAttr('required');
+                    $('.mobileBankChargeDiv').addClass('d-none');
+
+                    var certificate_fee = "{{  (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) }}"
+                    var information_centre_fee = "{{ (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}"
+                    var total_fee = parseInt(certificate_fee)+parseInt(information_centre_fee);
+                    $('.total_fee').val(total_fee)
                 } else if (payment_method == 'bkash' || payment_method == 'nagad') {
                     $('.bankDraftDiv').addClass('d-none');
                     $('.mobileBankingDiv').removeClass('d-none');
@@ -329,6 +350,13 @@
                     $('.rashid_no').removeAttr('required');
                     $('.serial_no').removeAttr('required');
                     $('.bank_slip').removeAttr('required');
+                    $('.mobileBankChargeDiv').removeClass('d-none');
+
+                    var certificate_fee = "{{  (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) }}"
+                    var information_centre_fee = "{{ (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}"
+                    var mobile_banking_charge_fee = "{{ empty(getOption('mobile_banking_charge_fee')) ? 0 : getOption('mobile_banking_charge_fee') }}"
+                    var total_fee = parseInt(certificate_fee)+parseInt(information_centre_fee)+parseInt(mobile_banking_charge_fee);
+                    $('.total_fee').val(total_fee)
                 } else if (payment_method == 'cash') {
                     $('.bankDraftDiv').addClass('d-none');
                     $('.mobileBankingDiv').addClass('d-none');
@@ -342,6 +370,12 @@
                     $('.mobile_banking_number').removeAttr('required');
                     $('.trx_id').removeAttr('required');
                     $('.bank_slip').removeAttr('required');
+                    $('.mobileBankChargeDiv').addClass('d-none');
+
+                    var certificate_fee = "{{  (empty(getOption('certificate_fee')) ? 0:getOption('certificate_fee')) }}"
+                    var information_centre_fee = "{{ (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee')) }}"
+                    var total_fee = parseInt(certificate_fee)+parseInt(information_centre_fee);
+                    $('.total_fee').val(total_fee)
                 }
             }
         });
