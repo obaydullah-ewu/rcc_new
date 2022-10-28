@@ -102,7 +102,7 @@
                         <div class="row mb-10">
                             <label class="col-lg-4 fw-bold text-muted">বিভাগ নাম</label>
                             <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->division->name }}</span>
+                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->division }}</span>
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -110,7 +110,7 @@
                         <div class="row mb-10">
                             <label class="col-lg-4 fw-bold text-muted">জেলা নাম</label>
                             <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->district->name }}</span>
+                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->district }}</span>
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -118,7 +118,7 @@
                         <div class="row mb-10">
                             <label class="col-lg-4 fw-bold text-muted">উপজেলা নাম</label>
                             <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->upazila->name }}</span>
+                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->upazila }}</span>
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -126,7 +126,7 @@
                         <div class="row mb-10">
                             <label class="col-lg-4 fw-bold text-muted">পোস্ট অফিস নাম</label>
                             <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->postOffice->name }}</span>
+                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->post_office }}</span>
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -134,7 +134,7 @@
                         <div class="row mb-10">
                             <label class="col-lg-4 fw-bold text-muted">গ্রাম নাম</label>
                             <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->village->name }}</span>
+                                <span class="fw-bolder fs-6 text-gray-800">{{ @$admin->village }}</span>
                             </div>
                         </div>
                         <!--end::Input group-->

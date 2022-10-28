@@ -95,39 +95,39 @@
 
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">বিভাগ নাম</label>
-                                            <input type="text" name="division" class="form-control form-control-solid" placeholder="Enter division" value="{{ old('division') }}">
+                                            <input type="text" name="division" class="form-control form-control-solid" placeholder="Enter division" value="{{ $admin->division }}">
                                         </div>
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">জেলা নাম</label>
-                                            <input type="text" name="district" class="form-control form-control-solid" placeholder="Enter district" value="{{ old('district') }}">
+                                            <input type="text" name="district" class="form-control form-control-solid" placeholder="Enter district" value="{{ $admin->district }}">
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">উপজেলা নাম</label>
-                                            <input type="text" name="upazila" class="form-control form-control-solid" placeholder="Enter upazila" value="{{ old('upazila') }}">
+                                            <input type="text" name="upazila" class="form-control form-control-solid" placeholder="Enter upazila" value="{{ $admin->upazila }}">
 
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পোস্ট অফিস নাম</label>
-                                            <input type="text" name="post_office" class="form-control form-control-solid" placeholder="Enter post office" value="{{ old('post_office') }}">
+                                            <input type="text" name="post_office" class="form-control form-control-solid" placeholder="Enter post office" value="{{ $admin->post_office }}">
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">গ্রাম নাম</label>
-                                            <input type="text" name="village" class="form-control form-control-solid" placeholder="Enter village" value="{{ old('village') }}">
+                                            <input type="text" name="village" class="form-control form-control-solid" placeholder="Enter village" value="{{ $admin->village }}">
                                         </div>
                                         <!--end::Input group-->
 
                                         <div class="form-group mb-2 col-md-4">
                                             <label class="required fw-bolder">অবস্থা</label>
                                             <select name="status" class="form-select form-select-solid">
-                                                <option value="1" @if(old('status') == 1) selected @endif>Active</option>
-                                                <option value="2" @if(old('status') == 2) selected @endif>Deactivated</option>
+                                                <option value="1" @if($admin->status == 1) selected @endif>Active</option>
+                                                <option value="2" @if($admin->status == 2) selected @endif>Deactivated</option>
                                             </select>
                                         </div>
                                     </div>
