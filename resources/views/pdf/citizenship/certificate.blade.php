@@ -21,7 +21,7 @@
         <div class="cc-second-area">
             <div class="cc-barcode">
                 <p>সিরিয়াল নংঃ {{ en2bn($citizenship->id) }}</p>
-                <img id="cc_barcode" src="{{ asset('assets/pdf/images/barcode.png') }}" alt="image">
+                {!! DNS2D::getBarcodeHTML($bar_code_details, 'QRCODE',3,3) !!}
             </div>
             <div class="cc-ward">
                 <h5>কাউন্সিলরের কার্যালয়</h5>

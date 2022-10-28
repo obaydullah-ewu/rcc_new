@@ -17,14 +17,14 @@ class PDFController extends Controller
         $data['citizenship'] = CitizenshipCertificate::findOrFail($id);
         $data['permanentAddress'] = UserPermanentAddress::where('user_id', $data['citizenship']->user_id)->first();
         $data['presentAddress'] = UserPresentAddress::where('user_id', $data['citizenship']->user_id)->first();
-        return view('pdf.citizenship.application',$data);
+        return view('pdf.citizenship.application', $data);
     }
 
     public function citizenshipPaymentDetailsPDF($id)
     {
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::findOrFail($id);
-        return view('pdf.citizenship.payment-slip',$data);
+        return view('pdf.citizenship.payment-slip', $data);
     }
 
     public function citizenshipCertificatePDF($id)
@@ -32,6 +32,7 @@ class PDFController extends Controller
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::where(['status' => CITIZENSHIP_CERTIFICATE_STATUS_APPROVED, 'id' => $id])->firstOrFail();
         $data['councilorSignature'] = CouncilorSignature::where('ward_no', $data['citizenship']->ward_no)->first();
-        return view('pdf.citizenship.certificate',$data);
+        $data['bar_code_details'] = 'নাম: ' . $data['citizenship']->name . ', পিতার নাম: ' . $data['citizenship']->father_name . ', মাতার নাম: ' . $data['citizenship']->mother_name . ', মোবাইল নম্বর: ' . $data['citizenship']->mobile_number;
+        return view('pdf.citizenship.certificate', $data);
     }
 }
