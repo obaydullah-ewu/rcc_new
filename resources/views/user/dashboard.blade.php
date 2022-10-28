@@ -40,7 +40,7 @@
                 <div class="row g-5 g-xl-8">
                     <div class="col-md-12">
                         <div class="card-header text-center border-0 mt-4">
-                            <img alt="Logo" src="{{ asset('/') }}assets/media/logo.png"/>
+                            <img alt="Logo" src="{{ asset(getOption('app_logo')) }}"/>
                         </div>
                     </div>
 
