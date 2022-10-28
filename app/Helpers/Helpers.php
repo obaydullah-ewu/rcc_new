@@ -16,7 +16,12 @@ const CITIZENSHIP_CERTIFICATE_STATUS_CANCELLED = 3;
 
 function saveImage($destination, $attribute): string
 {
-    $file_name = time() . '-' . $attribute->getClientOriginalName();
+    $file_name = time().$attribute->getClientOriginalName();
+    $filename = pathinfo($file_name, PATHINFO_FILENAME);
+    $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+    $file_name = preg_replace('/\s+/', '', $filename);
+    $file_name=  preg_replace('/[^A-Za-z0-9\-]/', '', $file_name);
+    $file_name = $file_name.'.'.$extension;
     $path = 'uploads/' . $destination . '/' . $file_name;
     $attribute->move(public_path('uploads/' . $destination . '/'), $file_name);
     return $path;

@@ -25,7 +25,7 @@
                                         <div class="col-lg-12 mb-2">
                                             <label class="fw-bolder ">Image:</label><br>
                                             <!--begin::Image input-->
-                                            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/avatars/blank.png') }})">
+                                            <div class="image-input image-input-outline" data-kt-image-input="true" style=" background-image: url({{ asset('assets/media/avatars/blank.png') }})">
                                                 <!--begin::Preview existing avatar-->
                                                 @if($admin->image)
                                                 <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ getFile($admin->image)  }})"></div>

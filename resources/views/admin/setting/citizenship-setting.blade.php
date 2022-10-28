@@ -3,7 +3,6 @@
 @section('content')
     <form class="form" action="{{ route('admin.setting.generalSettingUpdate') }}" method="post">
         @csrf
-        <!-- General Information -->
         <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
             <!--begin::Post-->
             <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -21,18 +20,33 @@
                                     <div class="row">
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">সনদপত্র ফি</label>
-                                            <input type="number" name="certificate_fee" class="form-control form-control-solid"
-                                                   placeholder="সনদপত্র ফি" value="{{getOption('certificate_fee') }}" required>
+                                            <div class="input-group">
+                                                <input type="number" name="certificate_fee" class="form-control form-control-solid"
+                                                       placeholder="সনদপত্র ফি" value="{{getOption('certificate_fee') }}" required>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">তথ্য কেন্দ্র ফি</label>
-                                            <input type="number" name="information_centre_fee" class="form-control form-control-solid"
-                                                   placeholder="তথ্য কেন্দ্র ফি" value="{{getOption('information_centre_fee') }}" required>
+                                            <div class="input-group">
+                                                <input type="number" name="information_centre_fee" class="form-control form-control-solid"
+                                                       placeholder="তথ্য কেন্দ্র ফি" value="{{getOption('information_centre_fee') }}" required>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">বিকাশ/নগদ চার্জ ফি</label>
-                                            <input type="number" name="mobile_banking_charge_fee" class="form-control form-control-solid"
-                                                   placeholder="বিকাশ/নগদ ফি" value="{{getOption('mobile_banking_charge_fee') }}" required>
+                                            <div class="input-group">
+                                                <input type="number" name="mobile_banking_charge_fee" class="form-control form-control-solid"
+                                                       placeholder="বিকাশ/নগদ ফি" value="{{getOption('mobile_banking_charge_fee') }}" required>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fw-bolder">টাকা</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -64,8 +78,3 @@
         </div>
     </form>
 @endsection
-
-@push('script')
-
-@endpush
-

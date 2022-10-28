@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\WardSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
@@ -13,7 +14,7 @@ class SettingController extends Controller
     public function generalSetting()
     {
         $data['pageTitle'] = 'সাধারণ সেটিং';
-        $data['navSettingActiveCLass'] = 'hover-show';
+        $data['navSettingActiveClass'] = 'hover show';
         $data['subNavGeneralSettingActiveCLass'] = 'active';
         return view('admin.setting.general-setting')->with($data);
     }
@@ -21,7 +22,7 @@ class SettingController extends Controller
     public function citizenshipSetting()
     {
         $data['pageTitle'] = 'নাগরিকত্ব সেটিং';
-        $data['navSettingActiveCLass'] = 'hover-show';
+        $data['navSettingActiveClass'] = 'hover show';
         $data['subNavCitizenshipSettingActiveCLass'] = 'active';
         return view('admin.setting.citizenship-setting')->with($data);
     }

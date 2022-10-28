@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CouncilorSignatureController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\LoginController;
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/', [CitizenshipController::class, 'list'])->name('list');
             Route::post('changeStatus', [CitizenshipController::class, 'changeStatus'])->name('changeStatus');
         });
+        Route::resource('councilor-signature',CouncilorSignatureController::class);
 
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
             Route::get('general-setting', [SettingController::class, 'generalSetting'])->name('generalSetting');

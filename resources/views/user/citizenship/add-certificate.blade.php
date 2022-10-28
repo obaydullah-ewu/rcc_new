@@ -165,8 +165,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text fw-bolder" style="width: 120px">মোট ফি</span>
                                                         </div>
-                                                        <input type="number" name="total_fee"
-                                                               value=""
+                                                        <input type="number" name="total_fee" value=""
                                                                step="any" min="1" class="form-control total_fee" placeholder="0.00" readonly>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fw-bolder">টাকা</span>

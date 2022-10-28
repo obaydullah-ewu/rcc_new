@@ -248,6 +248,13 @@
                                 </span>
                                 <span class="menu-title">নাগরিক সনদ আবেদন তালিকা</span>
                             </a>
+                            <a href="{{ route('admin.councilor-signature.index') }}"
+                               class="menu-link {{ @$subNavCouncilorSignatureActiveCLass }}">
+                                <span class="menu-bullet">
+                                   <i class="fas fa-list-ul"></i>
+                                </span>
+                                <span class="menu-title">কাউন্সিলরের স্বাক্ষর</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -366,7 +373,7 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">সেটিং</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navSettingActiveCLass }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navSettingActiveClass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
                            <i class="fas fa-users"></i>
