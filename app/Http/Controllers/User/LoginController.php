@@ -203,5 +203,4 @@ class LoginController extends Controller
 
         return redirect()->back()->with('success', 'Updated Successfully');
     }
-
 }
