@@ -258,12 +258,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item d-none">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">ট্রেড লাইসেন্স</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ @$navTradeActiveClass }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion d-none {{ @$navTradeActiveClass }}">
 					<span class="menu-link ">
                         <span class="menu-icon">
                            <i class="fas fa-users"></i>
