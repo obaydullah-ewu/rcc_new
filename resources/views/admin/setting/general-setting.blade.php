@@ -24,6 +24,11 @@
                                             <input type="text" name="app_name" class="form-control form-control-solid"
                                                    placeholder="" value="{{getOption('app_name') }}" required>
                                         </div>
+                                        <div class="form-group mb-4 col-md-6">
+                                            <label class="required fw-bolder">District</label>
+                                            <input type="text" name="app_district" class="form-control form-control-solid"
+                                                   placeholder="" value="{{getOption('app_district') }}" required>
+                                        </div>
 
                                         <div class="form-group col-md-6 mb-4">
                                             <label class="fw-bolder ">App Logo: </label><br>

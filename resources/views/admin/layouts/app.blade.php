@@ -13,6 +13,7 @@
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{ asset('/') }}assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/') }}assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="{{ asset(getOption('app_fav_icon')) }}">
     @stack('style')
         <style>
             #kt_table_users tr:nth-child(even){background-color: #f2f2f2;}

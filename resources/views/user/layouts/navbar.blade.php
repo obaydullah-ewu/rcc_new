@@ -3,9 +3,9 @@
     <div class="header-brand">
         <!--begin::Logo-->
         <a href="{{ route('user.dashboard') }}">
-            <img alt="Logo" src="{{ asset('/') }}assets/media/logo.png" class="h-25px h-lg-25px" />
+            <img alt="Logo" src="{{ asset(getOption('app_logo')) }}" class="h-25px h-lg-25px" />
         </a>
-        <h6 class="text-white">জেলা পরিষদ নারায়ণগঞ্জ</h6>
+        <h6 class="text-white">{{ getOption('app_name') }}</h6>
         <!--end::Logo-->
         <!--begin::Aside minimize-->
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-minimize" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">

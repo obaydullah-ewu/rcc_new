@@ -97,6 +97,13 @@
                                         {{ $citizenship->payment_method == 'cash' ? 'ক্যাশ' : null}}
                                         </b>
                                         <br>
+                                        @if($citizenship->payment_method == 'bkash' || $citizenship->payment_method == 'nagad')
+                                            লেনদেন নম্বরঃ <b class="text-black">{{ $citizenship->mobile_banking_number }}</b><br>
+                                            ট্রানস্যাকশন আইডিঃ <b class="text-black">{{ $citizenship->trx_id }}</b><br>
+                                        @elseif($citizenship->payment_method == 'cash')
+                                            রশিদ নম্বরঃ <b class="text-black">{{ $citizenship->rashid_no }}</b><br>
+                                            সিরিয়াল নংঃ <b class="text-black">{{ $citizenship->serial_no }}</b><br>
+                                        @endif
                                         টাকার পরিমানঃ <b class="text-black">{{ en2bn($citizenship->total_fee) . ' টাকা' }}</b><br>
                                         তারিখঃ <b class="text-black">{{ getBanglaDateFormat($citizenship->date) }}</b><br>
                                         ওয়ার্ড নংঃ <b class="text-black">{{ en2bn($citizenship->ward_no) }}</b><br>

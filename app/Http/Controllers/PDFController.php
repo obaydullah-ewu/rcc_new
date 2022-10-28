@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CitizenshipCertificate;
+use App\Models\UserPermanentAddress;
+use App\Models\UserPresentAddress;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -12,19 +14,6 @@ class PDFController extends Controller
     {
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::findOrFail($id);
-//        $pdf = app('dompdf.wrapper');
-//        $context = stream_context_create([
-//            'ssl' => [
-//                'verify_peer' => FALSE,
-//                'verify_peer_name' => FALSE,
-//                'allow_self_signed' => TRUE,
-//            ]
-//        ]);
-//        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-//        $pdf->getDomPDF()->setHttpContext($context);
-//        $pdf = PDF::loadView('pdf.citizenship.payment-slip',  $data);
-//        $pdf->setPaper('A4', 'landscape');
-//        return $pdf->stream('citizenship_payment_slip.' . '.pdf');
         return view('pdf.citizenship.payment-slip',$data);
     }
 
@@ -32,6 +21,8 @@ class PDFController extends Controller
     {
         $data['pageTitle'] = 'নাগরিকত্ব সনদ পেমেন্ট রশিদ';
         $data['citizenship'] = CitizenshipCertificate::findOrFail($id);
+        $data['permanentAddress'] = UserPermanentAddress::where('user_id', $data['citizenship']->user_id)->first();
+        $data['presentAddress'] = UserPresentAddress::where('user_id', $data['citizenship']->user_id)->first();
         return view('pdf.citizenship.application',$data);
     }
 
