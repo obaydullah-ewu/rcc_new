@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 use Rakibhstu\Banglanumber\NumberToBangla;
-
 
 //Start
 const ACTIVE = 1;
@@ -29,7 +26,12 @@ function saveImage($destination, $attribute): string
 
 function deleteFile($path)
 {
-    File::delete($path);
+    try {
+
+        File::delete($path);
+    }catch (Exception $exception) {
+
+    }
 }
 
 function getFile($file)
