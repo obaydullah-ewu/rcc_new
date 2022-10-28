@@ -92,7 +92,7 @@
                             <div class="card-header border-0 pt-5">
                                 <h3 class="card-title align-items-start flex-column">
                                     <span class="card-label fw-bolder fs-3 mb-1">নাগরিক সনদপত্র অনুরোধ চার্ট</span>
-                                    <span class="text-muted fw-bold fs-7">মোট 100 জন সনদপত্রের অনুরোধ এসেছে</span>
+                                    <span class="text-muted fw-bold fs-7">মোট {{ en2bn($total_pending_citizenship_certificate) }} জন সনদপত্রের অনুরোধ এসেছে</span>
                                 </h3>
                             </div>
                             <!--end::Header-->

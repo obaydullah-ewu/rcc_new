@@ -40,7 +40,6 @@ class CitizenshipController extends Controller
             'birth_certificate_no' => 'required_without:nid',
             'district' => 'required',
             'upazila' => 'required',
-            'union' => 'required',
             'post_office' => 'required',
             'ward_no' => 'required',
             'village' => 'required',
@@ -71,10 +70,9 @@ class CitizenshipController extends Controller
             ]);
         }
 
-        $citizen = CitizenshipCertificate::where('user_id', Auth::id())->first();
-        if (!$citizen) {
-            $citizen = new CitizenshipCertificate();
-        }
+
+        $citizen = new CitizenshipCertificate();
+
         $citizen->user_id = Auth::id();
         $citizen->name = $request->name;
         $citizen->father_name = $request->father_name;
@@ -84,7 +82,6 @@ class CitizenshipController extends Controller
         $citizen->birth_certificate_no = $request->birth_certificate_no;
         $citizen->district = $request->district;
         $citizen->upazila = $request->upazila;
-        $citizen->union = $request->union;
         $citizen->post_office = $request->post_office;
         $citizen->ward_no = $request->ward_no;
         $citizen->village = $request->village;
@@ -116,7 +113,7 @@ class CitizenshipController extends Controller
         $citizen->serial_no = $request->serial_no;
         $citizen->save();
 
-        return redirect()->back()->with('success', 'Created Successfully');
+        return redirect()->route('user.citizenship.list')->with('success', 'Created Successfully');
 
     }
 }

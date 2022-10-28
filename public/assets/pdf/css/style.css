@@ -3,8 +3,13 @@
   font-family: bangla;
   src: url(../fonts/Nikosh.ttf);
 }
+@font-face {
+  font-family: secondBangla;
+  src: url(../fonts/LiAlinurSoukhinANSIV2-Regular.ttf);
+}
 :root {
   --primaryFont: "bangla";
+  --secondaryFont: "secondBangla";
   --englishFont: "Roboto" sans-serif;
   --headerBG: #ADD2CA;
   --primaryColor: #0A3C6D;
@@ -26,6 +31,8 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   line-height: 1.8;
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 14px;
   font-family: var(--primaryFont);
 }
@@ -297,6 +304,142 @@ Citizenship Certificate
 .certificate-footer p {
   width: 250px;
   text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--primaryFont);
+}
+.certificate-footer .cc_f1 {
+  text-align: center;
+}
+
+/*============================
+Citizenship Certificate 2
+============================*/
+.cc-body {
+  background-color: #f7f5f5;
+}
+
+.citizenship-certificate {
+  position: relative;
+  overflow: hidden;
+}
+.citizenship-certificate::before {
+  content: url("../images/rajshahi-city-corporation.png");
+  filter: opacity(0.2);
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-58%, -42%);
+  z-index: 0;
+}
+.citizenship-certificate .container {
+  position: relative;
+  z-index: 2;
+}
+.citizenship-certificate .container p {
+  font-size: 14px;
+}
+.citizenship-certificate .container h1, .citizenship-certificate .container h2, .citizenship-certificate .container h3, .citizenship-certificate .container h4, .citizenship-certificate .container h5, .citizenship-certificate .container h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.citizenship-certificate .certificate-footer {
+  margin-top: 20px;
+}
+.citizenship-certificate .certificate-footer #councilor_sign, .citizenship-certificate .certificate-footer #seal_sign {
+  width: 150px;
+  height: 50px;
+}
+
+.cc-header {
+  padding-top: 20px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+.cc-header img {
+  max-width: 100px;
+  margin-right: 50px;
+}
+.cc-header h1 {
+  text-shadow: -2px -2px 5px #5e5e5e;
+  font-size: 42px;
+  font-weight: 500;
+  font-family: var(--secondaryFont);
+}
+
+.cc-second-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cc-second-area p {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--primaryFont);
+}
+.cc-second-area .cc-ward {
+  text-align: center;
+  margin-top: 20px;
+}
+.cc-second-area .cc-ward h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: var(--primaryFont);
+}
+.cc-second-area .cc-ward h5 span {
+  display: inline-block;
+  margin-left: 10px;
+  width: 50px;
+  height: 20px;
+  border: 1px solid black;
+}
+.cc-second-area .user-img {
+  text-align: center;
+}
+.cc-second-area .user-img #user_img {
+  width: 90px;
+  height: 80px;
+  margin-top: 5px;
+}
+.cc-second-area #cc_barcode {
+  width: 90px;
+  height: 80px;
+}
+
+.cc-title {
+  text-align: center;
+  margin-top: 10px;
+}
+.cc-title h4 {
+  margin: 5px auto;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--primaryFont);
+}
+.cc-title h3 {
+  margin: 0px auto 0;
+  line-height: 1;
+  font-size: 36px;
+  font-weight: 400;
+  font-family: var(--primaryFont);
+}
+
+.cc-main-body {
+  margin-top: 30px;
+}
+.cc-main-body p {
   font-size: 16px;
   font-weight: 400;
   font-family: var(--primaryFont);
