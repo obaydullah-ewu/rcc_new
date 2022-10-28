@@ -243,68 +243,60 @@
                         <div class="card-body pt-0">
                             <!--begin::Card-->
                             <div class="card card-custom gutter-b example example-compact">
-                                <div class="card-header">
-                                    <h3 class="card-title fw-boldest" style="color: blue">বর্তমান ঠিকানা</h3>
+                                <div class="card-header d-flex">
+                                    <h3 class="card-title fw-boldest mt-5" style="color: blue">স্থায়ী ঠিকানা</h3>
                                 </div>
                                 <!--begin::Form-->
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Holding Number (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_holding_en" id="pre_holding_en"  class="form-control form-control-solid" placeholder="Holding Number" value="{{ old('pre_holding_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">বিভাগ </label>
+                                            <select class="form-select form-select-solid per_division" name="per_division" required>
+                                                <option value="">বিভাগ নাম</option>
+                                                @foreach($divisions as $division)
+                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">হোল্ডিং নম্বর (বাংলায়)</label>
-                                            <input type="text" name="pre_holding_bn" id="pre_holding_bn" class="form-control form-control-solid"
-                                                   placeholder="হোল্ডিং নম্বর" value="{{ old('pre_holding_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">জেলা </label>
+                                            <select class="form-select form-select-solid per_district" name="per_district" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Village (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_village_en" id="pre_village_en" class="form-control form-control-solid" placeholder="Village" value="{{ old('pre_village_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">উপজেলা / থানা </label>
+                                            <select class="form-select form-select-solid per_upazila" name="per_upazila" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">গ্রাম/মহল্লা (বাংলায়)</label>
-                                            <input type="text" name="pre_village_bn" id="pre_village_bn" class="form-control form-control-solid" placeholder="গ্রাম/মহল্লা" value="{{ old('pre_village_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">ওয়ার্ড নং </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text fw-bolder">ওয়ার্ড-</span>
+                                                </div>
+                                                <select class="form-select form-select-solid per_ward" name="per_ward" required>
+                                                    <option value="">নির্বাচন করুন</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Ward No (ইংরেজীতে)</label>
-                                            <input type="number" name="pre_ward_no_en" id="pre_ward_no_en" class="form-control form-control-solid" placeholder="Ward No" value="{{ old('pre_ward_no_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">গ্রাম/মহল্লা </label>
+                                            <select class="form-select form-select-solid per_village" name="per_village" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">ওয়ার্ড নং (বাংলায়)</label>
-                                            <input type="number" name="pre_ward_no_bn" id="pre_ward_no_bn" class="form-control form-control-solid" placeholder="ওয়ার্ড নং" value="{{ old('pre_ward_no_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">হোল্ডিং নম্বর </label>
+                                            <input type="text" name="per_holding" class="form-control form-control-solid per_holding"
+                                                   placeholder="হোল্ডিং নম্বর" value="{{ old('per_holding')  }}">
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Post Office (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_post_office_en" id="pre_post_office_en" class="form-control form-control-solid" placeholder="Post Office" value="{{ old('pre_post_office_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">পোষ্ট অফিস (বাংলায়)</label>
-                                            <input type="text" name="pre_post_office_bn" id="pre_post_office_bn" class="form-control form-control-solid" placeholder="পোষ্ট অফিস" value="{{ old('pre_post_office_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Union (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_union_en" id="pre_union_en" class="form-control form-control-solid" placeholder="Union" value="{{ old('pre_union_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">ইউনিয়ন (বাংলায়)</label>
-                                            <input type="text" name="pre_union_bn" id="pre_union_bn" class="form-control form-control-solid" placeholder="ইউনিয়ন" value="{{ old('pre_union_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Upazila / Thana (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_upazila_en" id="pre_upazila_en" class="form-control form-control-solid" placeholder="Upazila" value="{{ old('pre_upazila_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">উপজেলা / থানা (বাংলায়)</label>
-                                            <input type="text" name="pre_upazila_bn" id="pre_upazila_bn" class="form-control form-control-solid" placeholder="উপজেলা" value="{{ old('pre_upazila_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">District (ইংরেজীতে)</label>
-                                            <input type="text" name="pre_district_en" id="pre_district_en" class="form-control form-control-solid" placeholder="District" value="{{ old('pre_district_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">জেলা (বাংলায়)</label>
-                                            <input type="text" name="pre_district_bn" id="pre_district_bn" class="form-control form-control-solid" placeholder="জেলা (বাংলায়)" value="{{ old('pre_district_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">পোষ্ট অফিস </label>
+                                            <select class="form-select form-select-solid per_post_office" name="per_post_office" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -331,72 +323,65 @@
                         <div class="card-body pt-0">
                             <!--begin::Card-->
                             <div class="card card-custom gutter-b example example-compact">
-                                <div class="card-header d-flex">
-                                    <h3 class="card-title fw-boldest mt-5" style="color: blue">স্থায়ী ঠিকানা</h3>
+                                <div class="card-header">
+                                    <h3 class="card-title fw-boldest" style="color: blue">বর্তমান ঠিকানা</h3>
                                     <label class="form-check form-check-custom form-check-inline form-check-solid mb-5 mt-5">
-                                        <input class="form-check-input same_as_present_address" name="same_as_present_address" type="checkbox" value="1">
-                                        <span class="fw-bolder ms-2"> বর্তমান ঠিকানা হিসাবে একই</span>
+                                        <input class="form-check-input same_as_permanent_address" name="same_as_permanent_address" type="checkbox"
+                                               value="1">
+                                        <span class="fw-bolder ms-2"> স্থায়ী ঠিকানা হিসাবে একই</span>
                                     </label>
                                 </div>
                                 <!--begin::Form-->
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Holding Number (ইংরেজীতে)</label>
-                                            <input type="text" name="per_holding_en" id="per_holding_en"  class="form-control form-control-solid" placeholder="Holding Number" value="{{ old('per_holding_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">বিভাগ </label>
+                                            <select class="form-select form-select-solid pre_division" name="pre_division" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                                @foreach($divisions as $division)
+                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">হোল্ডিং নম্বর (বাংলায়)</label>
-                                            <input type="text" name="per_holding_bn" id="per_holding_bn" class="form-control form-control-solid"
-                                                   placeholder="হোল্ডিং নম্বর" value="{{ old('per_holding_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">জেলা </label>
+                                            <select class="form-select form-select-solid pre_district" name="pre_district" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Village (ইংরেজীতে)</label>
-                                            <input type="text" name="per_village_en" id="per_village_en" class="form-control form-control-solid" placeholder="Village" value="{{ old('per_village_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">উপজেলা / থানা </label>
+                                            <select class="form-select form-select-solid pre_upazila" name="pre_upazila" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">গ্রাম/মহল্লা (বাংলায়)</label>
-                                            <input type="text" name="per_village_bn" id="per_village_bn" class="form-control form-control-solid" placeholder="গ্রাম/মহল্লা" value="{{ old('per_village_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">ওয়ার্ড নং </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text fw-bolder">ওয়ার্ড-</span>
+                                                </div>
+                                                <select class="form-select form-select-solid pre_ward" name="pre_ward" required>
+                                                    <option value="">নির্বাচন করুন</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Ward No (ইংরেজীতে)</label>
-                                            <input type="number" name="per_ward_no_en" id="per_ward_no_en" class="form-control form-control-solid" placeholder="Ward No" value="{{ old('per_ward_no_en') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">গ্রাম/মহল্লা </label>
+                                            <select class="form-select form-select-solid pre_village" name="pre_village" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">ওয়ার্ড নং (বাংলায়)</label>
-                                            <input type="number" name="per_ward_no_bn" id="per_ward_no_bn" class="form-control form-control-solid" placeholder="ওয়ার্ড নং" value="{{ old('per_ward_no_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">হোল্ডিং নম্বর </label>
+                                            <input type="text" name="pre_holding" class="form-control form-control-solid pre_holding"
+                                                   placeholder="হোল্ডিং নম্বর" value="{{ old('pre_holding') }}">
                                         </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Post Office (ইংরেজীতে)</label>
-                                            <input type="text" name="per_post_office_en" id="per_post_office_en" class="form-control form-control-solid" placeholder="Post Office" value="{{ old('per_post_office_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">পোষ্ট অফিস (বাংলায়)</label>
-                                            <input type="text" name="per_post_office_bn" id="per_post_office_bn" class="form-control form-control-solid" placeholder="পোষ্ট অফিস" value="{{ old('per_post_office_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Union (ইংরেজীতে)</label>
-                                            <input type="text" name="per_union_en" id="per_union_en" class="form-control form-control-solid" placeholder="Union" value="{{ old('per_union_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">ইউনিয়ন (বাংলায়)</label>
-                                            <input type="text" name="per_union_bn" id="per_union_bn" class="form-control form-control-solid" placeholder="ইউনিয়ন" value="{{ old('per_union_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">Upazila / Thana (ইংরেজীতে)</label>
-                                            <input type="text" name="per_upazila_en" id="per_upazila_en" class="form-control form-control-solid" placeholder="Upazila" value="{{ old('per_upazila_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">উপজেলা / থানা (বাংলায়)</label>
-                                            <input type="text" name="per_upazila_bn" id="per_upazila_bn" class="form-control form-control-solid" placeholder="উপজেলা" value="{{ old('per_upazila_bn') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">District (ইংরেজীতে)</label>
-                                            <input type="text" name="per_district_en" id="per_district_en" class="form-control form-control-solid" placeholder="District" value="{{ old('per_district_en') }}" required>
-                                        </div>
-                                        <div class="form-group mb-4 col-md-6">
-                                            <label class="required fw-bolder">জেলা (বাংলায়)</label>
-                                            <input type="text" name="per_district_bn" id="per_district_bn" class="form-control form-control-solid" placeholder="জেলা (বাংলায়)" value="{{ old('per_district_bn') }}" required>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <label class=" fw-bolder">পোষ্ট অফিস </label>
+                                            <select class="form-select form-select-solid pre_post_office" name="pre_post_office" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -448,39 +433,261 @@
 @endsection
 
 @push('script')
+    <!-- Start:: Permanent Address -->
     <script>
-        $(document).ready(function(){
-            $('input[name="same_as_present_address"]').click(function(){
-                if($(this).is(":checked")){
-                    $('#per_holding_en').val($('#pre_holding_en').val())
-                    $('#per_holding_bn').val($('#pre_holding_bn').val())
-                    $('#per_village_en').val($('#pre_village_en').val())
-                    $('#per_village_bn').val($('#pre_village_bn').val())
-                    $('#per_union_en').val($('#pre_union_en').val())
-                    $('#per_union_bn').val($('#pre_union_bn').val())
-                    $('#per_ward_no_en').val($('#pre_ward_no_en').val())
-                    $('#per_ward_no_bn').val($('#pre_ward_no_bn').val())
-                    $('#per_post_office_en').val($('#pre_post_office_en').val())
-                    $('#per_post_office_bn').val($('#pre_post_office_bn').val())
-                    $('#per_upazila_en').val($('#pre_upazila_en').val())
-                    $('#per_upazila_bn').val($('#pre_upazila_bn').val())
-                    $('#per_district_en').val($('#pre_district_en').val())
-                    $('#per_district_bn').val($('#pre_district_bn').val())
-                } else if($(this).is(":not(:checked)")){
-                    $('#per_holding_en').val('')
-                    $('#per_holding_bn').val('')
-                    $('#per_village_en').val('')
-                    $('#per_village_bn').val('')
-                    $('#per_union_en').val('')
-                    $('#per_union_bn').val('')
-                    $('#per_ward_no_en').val('')
-                    $('#per_ward_no_bn').val('')
-                    $('#per_post_office_en').val('')
-                    $('#per_post_office_bn').val('')
-                    $('#per_upazila_en').val('')
-                    $('#per_upazila_bn').val('')
-                    $('#per_district_en').val('')
-                    $('#per_district_bn').val('')
+        "use strict"
+        $('.per_division').on('change', function () {
+            var division_id = $(this).val();
+            getPerDistrict(division_id)
+        })
+
+        function getPerDistrict(division_id)
+        {
+            $.ajax({
+                url: '{{route('location.getDistrict')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'division_id': division_id},
+                success: function (response) {
+                    $('.per_district').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.districts, function (key, value) {
+                        $(".per_district").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.per_district').on('change', function () {
+            var district_id = $(this).val();
+            getPerUpazila(district_id)
+        })
+
+        function getPerUpazila(district_id)
+        {
+            $.ajax({
+                url: '{{route('location.getUpazila')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'district_id': district_id},
+                success: function (response) {
+                    $('.per_upazila').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.upazilas, function (key, value) {
+                        $(".per_upazila").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.per_upazila').on('change', function () {
+            var upazila_id = $(this).val();
+            getPerWard(upazila_id)
+        })
+
+        function getPerWard(upazila_id)
+        {
+            $.ajax({
+                url: '{{route('location.getWard')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'upazila_id': upazila_id},
+                success: function (response) {
+                    $('.per_ward').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.wards, function (key, value) {
+                        $(".per_ward").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.per_ward').on('change', function () {
+            var ward_id = $(this).val();
+            getPerVillages(ward_id)
+        })
+
+        function getPerVillages(ward_id)
+        {
+            $.ajax({
+                url: '{{route('location.getVillages')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'ward_id': ward_id},
+                success: function (response) {
+                    $('.per_village').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.villages, function (key, value) {
+                        $(".per_village").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.per_upazila').on('change', function () {
+            var upazila_id = $(this).val();
+            getPerPostOffice(upazila_id)
+        })
+
+        function getPerPostOffice(upazila_id)
+        {
+            $.ajax({
+                url: '{{route('location.getPostOffice')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'upazila_id': upazila_id},
+                success: function (response) {
+                    $('.per_post_office').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.postOffices, function (key, value) {
+                        $(".per_post_office").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+    </script>
+    <!-- End:: Permanent Address -->
+
+    <!-- Start:: Present Address -->
+    <script>
+        "use strict"
+        $('.pre_division').on('change', function () {
+            var division_id = $(this).val();
+            getPreDistrict(division_id)
+        })
+        function getPreDistrict(division_id)
+        {
+            $.ajax({
+                url: '{{route('location.getDistrict')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'division_id': division_id},
+                success: function (response) {
+                    $('.pre_district').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.districts, function (key, value) {
+                        $(".pre_district").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.pre_district').on('change', function () {
+            var district_id = $(this).val();
+            getPreUpazila(district_id)
+        })
+        function getPreUpazila(district_id)
+        {
+            $.ajax({
+                url: '{{route('location.getUpazila')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'district_id': district_id},
+                success: function (response) {
+                    $('.pre_upazila').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.upazilas, function (key, value) {
+                        $(".pre_upazila").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.pre_upazila').on('change', function () {
+            var upazila_id = $(this).val();
+            getPreWard(upazila_id)
+        })
+        function getPreWard(upazila_id)
+        {
+            $.ajax({
+                url: '{{route('location.getWard')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'upazila_id': upazila_id},
+                success: function (response) {
+                    $('.pre_ward').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.wards, function (key, value) {
+                        $(".pre_ward").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.pre_ward').on('change', function () {
+            var ward_id = $(this).val();
+            getPreVillages(ward_id)
+        })
+        function getPreVillages(ward_id)
+        {
+            $.ajax({
+                url: '{{route('location.getVillages')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'ward_id': ward_id},
+                success: function (response) {
+                    $('.pre_village').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.villages, function (key, value) {
+                        $(".pre_village").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+
+        $('.pre_upazila').on('change', function () {
+            var upazila_id = $(this).val();
+            getPrePostOffice(upazila_id)
+        })
+        function getPrePostOffice(upazila_id)
+        {
+            $.ajax({
+                url: '{{route('location.getPostOffice')}}',
+                type: "GET",
+                dataType: 'json',
+                data: {'upazila_id': upazila_id},
+                success: function (response) {
+                    $('.pre_post_office').html('<option value="">-- নির্বাচন করুন --</option>');
+                    $.each(response.postOffices, function (key, value) {
+                        $(".pre_post_office").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                },
+                async: false
+            });
+        }
+    </script>
+    <!-- End:: Present Address -->
+
+    <script>
+        $(document).ready(function () {
+            $('input[name="same_as_permanent_address"]').click(function () {
+                if ($(this).is(":checked")) {
+                    var division_id = $('.per_division').val();
+                    $('.pre_division').val(division_id)
+
+                    getPreDistrict(division_id)
+                    var district_id = $('.per_district').val()
+                    $('.pre_district').val(district_id)
+
+                    getPreUpazila(district_id)
+                    var upazila_id = $('.per_upazila').val()
+                    $('.pre_upazila').val(upazila_id)
+
+                    getPrePostOffice(upazila_id)
+                    var post_office_id = $('.per_post_office').val()
+                    $('.pre_post_office').val(post_office_id)
+
+                    getPreWard(upazila_id)
+                    var ward_id = $('.per_ward').val();
+                    $('.pre_ward').val(ward_id)
+
+                    getPreVillages(ward_id)
+                    var village_id = $('.per_village').val()
+                    $('.pre_village').val(village_id)
+
+                    $('.pre_holding').val($('.per_holding').val())
+                } else if ($(this).is(":not(:checked)")) {
+                    //
                 }
             });
         });

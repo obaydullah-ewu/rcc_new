@@ -46,6 +46,7 @@ class UserController extends Controller
         $data['pageTitle'] = 'ব্যবহারকারী যোগ করুন';
         $data['navUserActiveCLass'] = 'hover show';
         $data['subNavAddUserActiveCLass'] = 'active';
+        $data['divisions']  = Division::all();
         return view('admin.user.add')->with($data);
     }
 
@@ -66,9 +67,8 @@ class UserController extends Controller
             'mother_name_bn' => 'required',
             'email' => 'required|email|unique:users,email',
             'mobile_number' => 'required|unique:users,mobile_number',
-            'password' => 'required|min:6',
-            'nid' => 'required',
-            'birth_certificate_no' => 'required',
+            'password' => 'min:6',
+            'birth_certificate_no' => 'required_without:nid',
             'passport_no' => 'required',
             'birth_of_date' => 'required',
             'gender' => 'required',
@@ -81,7 +81,10 @@ class UserController extends Controller
             'handicapped_status' => 'required',
             'river_break_status' => 'required',
             'freedom_son_status' => 'required',
+        ], [
+            'birth_certificate_no.required_without' => 'জাতীয় পরিচয় পত্র নম্বর অথবা জন্ম সনদ নম্বর দিতে হবে'
         ]);
+
         DB::beginTransaction();
         try {
             $user = new User();
@@ -93,7 +96,9 @@ class UserController extends Controller
             $user->mother_name_bn = $request->mother_name_bn;
             $user->mobile_number = $request->mobile_number;
             $user->email = $request->email;
-            $user->password = Hash::make($request->password);
+            if ($request->password) {
+                $user->password = Hash::make($request->password);
+            }
             $user->nid = $request->nid;
             $user->birth_certificate_no = $request->birth_certificate_no;
             $user->passport_no = $request->passport_no;
@@ -114,40 +119,32 @@ class UserController extends Controller
             }
             $user->save();
 
-            $presentAddress = new UserPresentAddress();
+            $presentAddress = UserPresentAddress::where('user_id', $user->id)->first();
+            if(!$presentAddress) {
+                $presentAddress = new UserPresentAddress();
+            }
             $presentAddress->user_id = $user->id;
-            $presentAddress->pre_holding_en = $request->pre_holding_en;
-            $presentAddress->pre_holding_bn = $request->pre_holding_bn;
-            $presentAddress->pre_village_en = $request->pre_village_en;
-            $presentAddress->pre_village_bn = $request->pre_village_bn;
-            $presentAddress->pre_union_en = $request->pre_union_en;
-            $presentAddress->pre_union_bn = $request->pre_union_bn;
-            $presentAddress->pre_ward_no_en = $request->pre_ward_no_en;
-            $presentAddress->pre_ward_no_bn = $request->pre_ward_no_bn;
-            $presentAddress->pre_post_office_en = $request->pre_post_office_en;
-            $presentAddress->pre_post_office_bn = $request->pre_post_office_bn;
-            $presentAddress->pre_upazila_en = $request->pre_upazila_en;
-            $presentAddress->pre_upazila_bn = $request->pre_upazila_bn;
-            $presentAddress->pre_district_en = $request->pre_district_en;
-            $presentAddress->pre_district_bn = $request->pre_district_bn;
+            $presentAddress->pre_holding = $request->pre_holding;
+            $presentAddress->pre_village = $request->pre_village;
+            $presentAddress->pre_ward = $request->pre_ward;
+            $presentAddress->pre_post_office = $request->pre_post_office;
+            $presentAddress->pre_upazila = $request->pre_upazila;
+            $presentAddress->pre_district = $request->pre_district;
+            $presentAddress->pre_division = $request->pre_division;
             $presentAddress->save();
 
-            $permanentAddress = new UserPermanentAddress();
+            $permanentAddress = UserPermanentAddress::where('user_id', $user->id)->first();
+            if(!$permanentAddress) {
+                $permanentAddress = new UserPermanentAddress();
+            }
             $permanentAddress->user_id = $user->id;
-            $permanentAddress->per_holding_en = $request->per_holding_en;
-            $permanentAddress->per_holding_bn = $request->per_holding_bn;
-            $permanentAddress->per_village_en = $request->per_village_en;
-            $permanentAddress->per_village_bn = $request->per_village_bn;
-            $permanentAddress->per_union_en = $request->per_union_en;
-            $permanentAddress->per_union_bn = $request->per_union_bn;
-            $permanentAddress->per_ward_no_en = $request->per_ward_no_en;
-            $permanentAddress->per_ward_no_bn = $request->per_ward_no_bn;
-            $permanentAddress->per_post_office_en = $request->per_post_office_en;
-            $permanentAddress->per_post_office_bn = $request->per_post_office_bn;
-            $permanentAddress->per_upazila_en = $request->per_upazila_en;
-            $permanentAddress->per_upazila_bn = $request->per_upazila_bn;
-            $permanentAddress->per_district_en = $request->per_district_en;
-            $permanentAddress->per_district_bn = $request->per_district_bn;
+            $permanentAddress->per_holding = $request->per_holding;
+            $permanentAddress->per_village = $request->per_village;
+            $permanentAddress->per_ward = $request->per_ward;
+            $permanentAddress->per_post_office = $request->per_post_office;
+            $permanentAddress->per_upazila = $request->per_upazila;
+            $permanentAddress->per_district = $request->per_district;
+            $permanentAddress->per_division = $request->per_division;
             $permanentAddress->save();
             DB::commit();
         } catch (\Exception $e) {
@@ -185,6 +182,19 @@ class UserController extends Controller
         $data['navUserActiveCLass'] = 'hover show';
         $data['subNavAddUserActiveCLass'] = 'active';
         $data['user'] = User::findOrFail($id);
+        $data['divisions'] = Division::all();
+        $data['permanentAddress'] = UserPermanentAddress::where('user_id', $id)->first();
+        if(!$data['permanentAddress']) {
+            $data['permanentAddress'] = new UserPermanentAddress();
+            $data['permanentAddress']->user_id = $id;
+            $data['permanentAddress']->save();
+        }
+        $data['presentAddress'] = UserPresentAddress::where('user_id', $id)->first();
+        if(!$data['presentAddress']) {
+            $data['presentAddress'] = new UserPresentAddress();
+            $data['presentAddress']->user_id = $id;
+            $data['presentAddress']->save();
+        }
         return view('admin.user.edit')->with($data);
     }
 
@@ -205,10 +215,9 @@ class UserController extends Controller
             'mother_name_en' => 'required',
             'mother_name_bn' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|min:6',
             'mobile_number' => 'required|unique:users,mobile_number,' . $id,
-            'nid' => 'required',
-            'birth_certificate_no' => 'required',
+            'password' => 'nullable|min:6',
+            'birth_certificate_no' => 'required_without:nid',
             'passport_no' => 'required',
             'birth_of_date' => 'required',
             'gender' => 'required',
@@ -221,7 +230,10 @@ class UserController extends Controller
             'handicapped_status' => 'required',
             'river_break_status' => 'required',
             'freedom_son_status' => 'required',
-        ]);
+        ],
+            [
+                'birth_certificate_no.required_without' => 'জাতীয় পরিচয় পত্র নম্বর অথবা জন্ম সনদ নম্বর দিতে হবে'
+            ]);
 
         DB::beginTransaction();
         try {
@@ -263,20 +275,13 @@ class UserController extends Controller
                 $presentAddress = new UserPresentAddress();
             }
             $presentAddress->user_id = $user->id;
-            $presentAddress->pre_holding_en = $request->pre_holding_en;
-            $presentAddress->pre_holding_bn = $request->pre_holding_bn;
-            $presentAddress->pre_village_en = $request->pre_village_en;
-            $presentAddress->pre_village_bn = $request->pre_village_bn;
-            $presentAddress->pre_union_en = $request->pre_union_en;
-            $presentAddress->pre_union_bn = $request->pre_union_bn;
-            $presentAddress->pre_ward_no_en = $request->pre_ward_no_en;
-            $presentAddress->pre_ward_no_bn = $request->pre_ward_no_bn;
-            $presentAddress->pre_post_office_en = $request->pre_post_office_en;
-            $presentAddress->pre_post_office_bn = $request->pre_post_office_bn;
-            $presentAddress->pre_upazila_en = $request->pre_upazila_en;
-            $presentAddress->pre_upazila_bn = $request->pre_upazila_bn;
-            $presentAddress->pre_district_en = $request->pre_district_en;
-            $presentAddress->pre_district_bn = $request->pre_district_bn;
+            $presentAddress->pre_holding = $request->pre_holding;
+            $presentAddress->pre_village = $request->pre_village;
+            $presentAddress->pre_ward = $request->pre_ward;
+            $presentAddress->pre_post_office = $request->pre_post_office;
+            $presentAddress->pre_upazila = $request->pre_upazila;
+            $presentAddress->pre_district = $request->pre_district;
+            $presentAddress->pre_division = $request->pre_division;
             $presentAddress->save();
 
             $permanentAddress = UserPermanentAddress::where('user_id', $user->id)->first();
@@ -284,20 +289,13 @@ class UserController extends Controller
                 $permanentAddress = new UserPermanentAddress();
             }
             $permanentAddress->user_id = $user->id;
-            $permanentAddress->per_holding_en = $request->per_holding_en;
-            $permanentAddress->per_holding_bn = $request->per_holding_bn;
-            $permanentAddress->per_village_en = $request->per_village_en;
-            $permanentAddress->per_village_bn = $request->per_village_bn;
-            $permanentAddress->per_union_en = $request->per_union_en;
-            $permanentAddress->per_union_bn = $request->per_union_bn;
-            $permanentAddress->per_ward_no_en = $request->per_ward_no_en;
-            $permanentAddress->per_ward_no_bn = $request->per_ward_no_bn;
-            $permanentAddress->per_post_office_en = $request->per_post_office_en;
-            $permanentAddress->per_post_office_bn = $request->per_post_office_bn;
-            $permanentAddress->per_upazila_en = $request->per_upazila_en;
-            $permanentAddress->per_upazila_bn = $request->per_upazila_bn;
-            $permanentAddress->per_district_en = $request->per_district_en;
-            $permanentAddress->per_district_bn = $request->per_district_bn;
+            $permanentAddress->per_holding = $request->per_holding;
+            $permanentAddress->per_village = $request->per_village;
+            $permanentAddress->per_ward = $request->per_ward;
+            $permanentAddress->per_post_office = $request->per_post_office;
+            $permanentAddress->per_upazila = $request->per_upazila;
+            $permanentAddress->per_district = $request->per_district;
+            $permanentAddress->per_division = $request->per_division;
             $permanentAddress->save();
             DB::commit();
         } catch (\Exception $e) {

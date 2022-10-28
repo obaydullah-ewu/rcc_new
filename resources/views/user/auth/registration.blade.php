@@ -51,40 +51,20 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark required">English Name</label>
+                        <label class="form-label fs-6 fw-bolder text-dark">ইমেইল</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="name_en" value="{{ old('name_en') }}" required/>
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{ old('email') }}" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark required">Bangla Name</label>
+                        <label class="form-label fs-6 fw-bolder text-dark">মোবাইল নম্বর</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="name_bn" value="{{ old('name_bn') }}" required/>
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark required">Email</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{ old('email') }}"  required/>
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark required">Mobile Number</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="mobile_number" value="{{ old('mobile_number') }}"  required/>
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="mobile_number" value="{{ old('mobile_number') }}" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -93,7 +73,7 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-stack mb-2">
                             <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0 required">Password</label>
+                            <label class="form-label fw-bolder text-dark fs-6 mb-0 required">পাসওয়ার্ড</label>
                             <!--end::Label-->
                         </div>
                         <!--end::Wrapper-->
@@ -134,8 +114,41 @@
 <script src="{{ asset('/') }}assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Page Custom Javascript(used by this page)-->
-<script src="{{ asset('/') }}assets/js/custom/authentication/sign-in/general.js"></script>
+{{--<script src="{{ asset('/') }}assets/js/custom/authentication/sign-in/general.js"></script>--}}
 <!--end::Page Custom Javascript-->
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    @if(session()->has( 'success' ))
+    toastr.success("{{ session()->get( 'success' ) }}");
+    @endif
+
+    @if(session()->has( 'error' ))
+    toastr.error("{{ session()->get( 'error' ) }}");
+    @endif
+
+    @if (@$errors->any())
+    @foreach ($errors->all() as $error)
+    toastr.error("{{ $error }}");
+    @endforeach
+    @endif
+</script>
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

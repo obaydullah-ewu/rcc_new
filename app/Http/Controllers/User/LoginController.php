@@ -22,16 +22,15 @@ class LoginController extends Controller
     public function registration(Request $request)
     {
         $request->validate([
-            'name_en' => 'required',
-            'name_bn' => 'required',
-            'email' => 'required|unique:users,email',
-            'mobile_number' => 'required|unique:users,mobile_number',
+            'email' => 'required_without:mobile_number|unique:users,email',
+            'mobile_number' => 'required_without:email|unique:users,mobile_number',
             'password' => 'required|min:6'
+        ],[
+            'email.required_without' => 'ইমেইল নম্বর অথবা মোবাইল নম্বর নম্বর দিতে হবে',
+            'mobile_number.required_without' => 'ইমেইল নম্বর অথবা মোবাইল নম্বর নম্বর দিতে হবে',
         ]);
 
         $user = new User();
-        $user->name_en = $request->name_en;
-        $user->name_bn = $request->name_bn;
         $user->email = $request->email;
         $user->mobile_number = $request->mobile_number;
         $user->password = Hash::make($request->password);

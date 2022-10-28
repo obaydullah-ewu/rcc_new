@@ -18,8 +18,10 @@
                     <!--begin::Info-->
                     <div class="flex-grow-1 me-2">
                         <!--begin::Username-->
-                        <a href="{{ route('user.my-profile') }}"
-                           class="text-white text-hover-primary fs-6 fw-bold">{{ @Auth::user()->name_bn ?? @Auth::user()->name_en }}</a>
+                        <a href="{{ route('user.my-profile') }}" class="text-white text-hover-primary fs-6 fw-bold">
+                            {{ @Auth::user()->name_bn ?? @Auth::user()->name_en }}
+                            {{ @Auth::user()->mobile_number ?? @Auth::user()->email }}
+                        </a>
                         <!--end::Username-->
 
                         <!--begin::Label-->

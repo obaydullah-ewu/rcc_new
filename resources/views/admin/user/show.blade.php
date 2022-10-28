@@ -98,7 +98,7 @@
                             <!--begin::Label-->
                             <!--begin::Label-->
                             <div class="col-lg-8">
-                                <span class="fw-bold fs-6 text-gray-800">{{ $user->father_name }}</span>
+                                <span class="fw-bold fs-6 text-gray-800">{{ $user->father_name_bn ?? $user->father_name_en }}</span>
                             </div>
                             <!--begin::Label-->
                         </div>
@@ -110,7 +110,7 @@
                             <!--begin::Label-->
                             <!--begin::Label-->
                             <div class="col-lg-8">
-                                <span class="fw-bold fs-6 text-gray-800">{{ $user->mother_name }}</span>
+                                <span class="fw-bold fs-6 text-gray-800">{{ $user->mother_name_bn ?? $user->mother_name_en }}</span>
                             </div>
                             <!--begin::Label-->
                         </div>
@@ -140,46 +140,46 @@
                         </div>
                         <!--end::Input group-->
 
-                        <!--begin::Input group-->
-                        <div class="row mb-10">
-                            <label class="col-lg-4 fw-bold text-muted">বিভাগ নাম</label>
-                            <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->division->name }}</span>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-10">
-                            <label class="col-lg-4 fw-bold text-muted">জেলা নাম</label>
-                            <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->district->name }}</span>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-10">
-                            <label class="col-lg-4 fw-bold text-muted">উপজেলা নাম</label>
-                            <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->upazila->name }}</span>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-10">
-                            <label class="col-lg-4 fw-bold text-muted">পোস্ট অফিস নাম</label>
-                            <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->postOffice->name }}</span>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-10">
-                            <label class="col-lg-4 fw-bold text-muted">গ্রাম নাম</label>
-                            <div class="col-lg-8">
-                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->village->name }}</span>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
+{{--                        <!--begin::Input group-->--}}
+{{--                        <div class="row mb-10">--}}
+{{--                            <label class="col-lg-4 fw-bold text-muted">বিভাগ নাম</label>--}}
+{{--                            <div class="col-lg-8">--}}
+{{--                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->division->name }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end::Input group-->--}}
+{{--                        <!--begin::Input group-->--}}
+{{--                        <div class="row mb-10">--}}
+{{--                            <label class="col-lg-4 fw-bold text-muted">জেলা নাম</label>--}}
+{{--                            <div class="col-lg-8">--}}
+{{--                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->district->name }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end::Input group-->--}}
+{{--                        <!--begin::Input group-->--}}
+{{--                        <div class="row mb-10">--}}
+{{--                            <label class="col-lg-4 fw-bold text-muted">উপজেলা নাম</label>--}}
+{{--                            <div class="col-lg-8">--}}
+{{--                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->upazila->name }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end::Input group-->--}}
+{{--                        <!--begin::Input group-->--}}
+{{--                        <div class="row mb-10">--}}
+{{--                            <label class="col-lg-4 fw-bold text-muted">পোস্ট অফিস নাম</label>--}}
+{{--                            <div class="col-lg-8">--}}
+{{--                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->postOffice->name }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end::Input group-->--}}
+{{--                        <!--begin::Input group-->--}}
+{{--                        <div class="row mb-10">--}}
+{{--                            <label class="col-lg-4 fw-bold text-muted">গ্রাম নাম</label>--}}
+{{--                            <div class="col-lg-8">--}}
+{{--                                <span class="fw-bolder fs-6 text-gray-800">{{ @$user->village->name }}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end::Input group-->--}}
                     </div>
                     <!--end::Card body-->
                 </div>
