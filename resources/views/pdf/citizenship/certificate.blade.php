@@ -59,7 +59,7 @@
         <div class="certificate-footer">
             <div class="cc_f1">
                 <img id="seal_sign" src="{{ asset($councilorSignature->creator_signature) }}" alt="image">
-                <p>প্রস্তুতকারীর সাক্ষর ও সীল</p>
+                <p>প্রস্তুতকারীর স্বাক্ষর</p>
             </div>
             <div class="cc_f1">
                 <img id="councilor_sign" src="{{ asset($councilorSignature->councilor_signature) }}" alt="image">
