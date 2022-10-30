@@ -116,7 +116,6 @@ class LoginController extends Controller
             'mobile_number' => 'required|unique:users,mobile_number,' . Auth::id(),
             'password' => 'min:6',
             'birth_certificate_no' => 'required_without:nid',
-            'passport_no' => 'required',
             'birth_of_date' => 'required',
             'gender' => 'required',
             'religion' => 'required',

@@ -22,39 +22,60 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group mb-4 col-md-4">
-                                            <label class="required fw-bolder">Name (ইংরেজীতে)</label>
-                                            <input type="text" name="name_en" class="form-control form-control-solid" placeholder="নাম (ইংরেজীতে)"
+                                            <label class="required fw-bolder @error('name_en') text-danger @enderror">Name (ইংরেজীতে)</label>
+                                            <input type="text" name="name_en" class="form-control form-control-solid @error('name_en') is-invalid @enderror" placeholder="নাম (ইংরেজীতে)"
                                                    value="{{ $user->name_en ?? old('name_en') }}" required>
+                                            @error('name_en')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">নাম </label>
                                             <input type="text" name="name_bn" class="form-control form-control-solid" placeholder="নাম "
                                                    value="{{ $user->name_bn ?? old('name_bn') }}" required>
+                                            @error('name_bn')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">Father Name (ইংরেজীতে)</label>
                                             <input type="text" name="father_name_en" class="form-control form-control-solid" placeholder="পিতার নাম"
                                                    value="{{ $user->father_name_en ?? old('father_name_en') }}" required>
+                                            @error('father_name_en')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">পিতার নাম </label>
                                             <input type="text" name="father_name_bn" class="form-control form-control-solid" placeholder="পিতার নাম"
                                                    value="{{ $user->father_name_bn ?? old('father_name_bn') }}" required>
+                                            @error('father_name_bn')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">Mother Name (ইংরেজীতে)</label>
                                             <input type="text" name="mother_name_en" class="form-control form-control-solid" placeholder="মাতার নাম"
                                                    value="{{ $user->mother_name_en ?? old('mother_name_en') }}" required>
+                                            @error('mother_name_en')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">মাতার নাম </label>
                                             <input type="text" name="mother_name_bn" class="form-control form-control-solid" placeholder="মাতার নাম"
                                                    value="{{ $user->mother_name_bn ?? old('mother_name_bn') }}" required>
+                                            @error('mother_name_bn')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">মোবাইল নম্বর</label>
                                             <input type="text" name="mobile_number" class="form-control form-control-solid" placeholder="মোবাইল নম্বর"
                                                    value="{{ $user->mobile_number ?? old('mobile_number') }}" required>
+                                            @error('mobile_number')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">ইমেইল</label>
@@ -64,88 +85,121 @@
                                                 </div>
                                                 <input type="text" name="email" class="form-control form-control-solid" placeholder="ইমেইল"
                                                        value="{{ $user->email ?? old('email') }}">
+                                                @error('email')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                             </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="fw-bolder">জাতীয় পরিচয় পত্র নম্বর</label>
                                             <input type="text" name="nid" class="form-control form-control-solid"
                                                    placeholder="জাতীয় পরিচয় পত্র নাম্বার" value="{{ $user->nid ?? old('nid') }}">
+                                            @error('nid')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="fw-bolder">জন্ম সনদ নম্বর</label>
                                             <input type="text" name="birth_certificate_no" class="form-control form-control-solid"
                                                    placeholder="জন্ম সনদ নাম্বার"
                                                    value="{{ $user->birth_certificate_no ?? old('birth_certificate_no') }}">
+                                            @error('birth_certificate_no')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="fw-bolder">পাসপোর্ট নম্বর</label>
                                             <input type="text" name="passport_no" class="form-control form-control-solid"
                                                    placeholder="পাসপোর্ট নাম্বার" value="{{ $user->passport_no ?? old('passport_no') }}">
+                                            @error('passport_no')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">জন্ম তারিখ</label>
                                             <input type="date" name="birth_of_date" class="form-control form-control-solid" placeholder="জন্ম তারিখ"
                                                    value="{{ $user->birth_of_date ?? old('birth_of_date') }}" required>
+                                            @error('birth_of_date')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">লিঙ্গ</label>
-                                            <select name="gender" class="form-select form-select-solid land_division_id" required>
+                                            <select name="gender" class="form-select form-select-solid" required>
                                                 <option value="">নির্বাচন করুন</option>
-                                                <option value="Male" {{ $user->gender == 'Male' ? 'selected':'' }}>পুরুষ</option>
-                                                <option value="Female" {{ $user->gender == 'Female' ? 'selected':'' }}>মহিলা</option>
-                                                <option value="Others" {{ $user->gender == 'Others' ? 'selected':'' }}>অন্যান্য</option>
+                                                <option value="Male" {{ ($user->gender ?? old('gender')) == 'Male' ? 'selected':'' }}>পুরুষ</option>
+                                                <option value="Female" {{ ($user->gender ?? old('gender')) == 'Female' ? 'selected':'' }}>মহিলা</option>
+                                                <option value="Others" {{ ($user->gender ?? old('gender')) == 'Others' ? 'selected':'' }}>অন্যান্য</option>
                                             </select>
+                                            @error('gender')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">ধর্ম</label>
-                                            <select name="religion" class="form-select form-select-solid land_division_id" required>
+                                            <select name="religion" class="form-select form-select-solid" required>
                                                 <option value="">নির্বাচন করুন</option>
-                                                <option value="islam" {{ $user->religion == 'islam' ? 'selected':'' }}>ইসলাম</option>
-                                                <option value="hindo" {{ $user->religion == 'hindo' ? 'selected':'' }}>হিন্দু</option>
-                                                <option value="Female" {{ $user->religion == 'Female' ? 'selected':'' }}>খ্রিস্টান</option>
-                                                <option value="Female" {{ $user->religion == 'Female' ? 'selected':'' }}>বৌদ্ধ</option>
-                                                <option value="Others" {{ $user->religion == 'Others' ? 'selected':'' }}>অন্যান্য</option>
+                                                <option value="islam" {{ ($user->religion ?? old('religion')) == 'islam' ? 'selected':'' }}>ইসলাম</option>
+                                                <option value="hindo" {{ ($user->religion ?? old('religion')) == 'hindo' ? 'selected':'' }}>হিন্দু</option>
+                                                <option value="Female" {{ ($user->religion ?? old('religion')) == 'Female' ? 'selected':'' }}>খ্রিস্টান</option>
+                                                <option value="Female" {{ ($user->religion ?? old('religion')) == 'Female' ? 'selected':'' }}>বৌদ্ধ</option>
+                                                <option value="Others" {{ ($user->religion ?? old('religion')) == 'Others' ? 'selected':'' }}>অন্যান্য</option>
                                             </select>
+                                            @error('religion')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">বৈবাহিক অবস্থা</label>
-                                            <select name="marital_status" class="form-select form-select-solid land_division_id" required>
+                                            <select name="marital_status" class="form-select form-select-solid" required>
                                                 <option value="">নির্বাচন করুন</option>
-                                                <option value="married" {{ $user->marital_status == 'married' ? 'selected':'' }}>বিবাহিত</option>
-                                                <option value="unmarried" {{ $user->marital_status == 'unmarried' ? 'selected':'' }}>অবিবাহিত</option>
-                                                <option value="divorce" {{ $user->marital_status == 'divorce' ? 'selected':'' }}>বিবাহবিচ্ছেদ</option>
-                                                <option value="widow" {{ $user->marital_status == 'widow' ? 'selected':'' }}>বিধবা</option>
-                                                <option value="Others" {{ $user->marital_status == 'Others' ? 'selected':'' }}>অন্যান্য</option>
+                                                <option value="married" {{ ($user->marital_status ?? old('marital_status')) == 'married' ? 'selected':'' }}>বিবাহিত</option>
+                                                <option value="unmarried" {{ ($user->marital_status ?? old('marital_status')) == 'unmarried' ? 'selected':'' }}>অবিবাহিত</option>
+                                                <option value="divorce" {{ ($user->marital_status ?? old('marital_status')) == 'divorce' ? 'selected':'' }}>বিবাহবিচ্ছেদ</option>
+                                                <option value="widow" {{ ($user->marital_status ?? old('marital_status')) == 'widow' ? 'selected':'' }}>বিধবা</option>
+                                                <option value="Others" {{ ($user->marital_status ?? old('marital_status')) == 'Others' ? 'selected':'' }}>অন্যান্য</option>
                                             </select>
+                                            @error('marital_status')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">মাসিক আয়</label>
                                             <input type="text" name="monthly_income" class="form-control form-control-solid" placeholder="মাসিক আয়"
                                                    value="{{ $user->monthly_income ?? old('monthly_income') }}">
+                                            @error('monthly_income')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="fw-bolder">বার্ষিক আয়</label>
                                             <input type="text" name="yearly_income" class="form-control form-control-solid" placeholder="বার্ষিক আয়"
                                                    value="{{ $user->yearly_income ?? old('yearly_income') }}">
+                                            @error('yearly_income')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="fw-bolder">পেশা</label>
                                             <input type="text" name="profession" class="form-control form-control-solid" placeholder="পেশা"
                                                    value="{{ $user->profession ?? old('profession') }}">
+                                            @error('profession')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class="required fw-bolder">আপনি কি ভূমিহীন?</label>
                                             <div class="d-flex align-items-center mt-3">
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
                                                     <input class="form-check-input" name="landless_status"
-                                                           {{ $user->landless_status == 'yes' ? 'checked':'' }} type="radio" value="yes">
+                                                           {{ ($user->landless_status ?? old('landless_status')) == 'yes' ? 'checked':'' }} type="radio" value="yes">
                                                     <span class="fw-semibold ps-2 fs-6">হ্যাঁ</span>
                                                 </label>
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid">
                                                     <input class="form-check-input" name="landless_status"
-                                                           {{ $user->landless_status != 'yes' ? 'checked':'' }} type="radio" value="no">
+                                                           {{ ($user->landless_status ?? old('landless_status')) != 'yes' ? 'checked':'' }} type="radio" value="no">
                                                     <span class="fw-semibold ps-2 fs-6">না</span>
                                                 </label>
                                             </div>
@@ -155,12 +209,12 @@
                                             <div class="d-flex align-items-center mt-3">
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
                                                     <input class="form-check-input" name="handicapped_status"
-                                                           {{ $user->handicapped_status == 'yes' ? 'checked':'' }} type="radio" value="yes">
+                                                           {{ ($user->handicapped_status ?? old('handicapped_status')) == 'yes' ? 'checked':'' }} type="radio" value="yes">
                                                     <span class="fw-semibold ps-2 fs-6">হ্যাঁ</span>
                                                 </label>
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid">
                                                     <input class="form-check-input" name="handicapped_status"
-                                                           {{ $user->handicapped_status != 'yes' ? 'checked':'' }} type="radio" value="no">
+                                                           {{ ($user->handicapped_status ?? old('handicapped_status')) != 'yes' ? 'checked':'' }} type="radio" value="no">
                                                     <span class="fw-semibold ps-2 fs-6">না</span>
                                                 </label>
                                             </div>
@@ -170,12 +224,12 @@
                                             <div class="d-flex align-items-center mt-3">
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
                                                     <input class="form-check-input" name="river_break_status"
-                                                           {{ $user->river_break_status == 'yes' ? 'checked':'' }} type="radio" value="yes">
+                                                           {{ ($user->river_break_status ?? old('river_break_status')) == 'yes' ? 'checked':'' }} type="radio" value="yes">
                                                     <span class="fw-semibold ps-2 fs-6">হ্যাঁ</span>
                                                 </label>
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid">
                                                     <input class="form-check-input" name="river_break_status"
-                                                           {{ $user->river_break_status != 'yes' ? 'checked':'' }} type="radio" value="no">
+                                                           {{ ($user->river_break_status ?? old('river_break_status')) != 'yes' ? 'checked':'' }} type="radio" value="no">
                                                     <span class="fw-semibold ps-2 fs-6">না</span>
                                                 </label>
                                             </div>
@@ -185,12 +239,12 @@
                                             <div class="d-flex align-items-center mt-3">
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
                                                     <input class="form-check-input" name="freedom_son_status"
-                                                           {{ $user->freedom_son_status  == 'yes' ? 'checked':'' }} type="radio" value="yes">
+                                                           {{ ($user->freedom_son_status ?? old('freedom_son_status'))  == 'yes' ? 'checked':'' }} type="radio" value="yes">
                                                     <span class="fw-semibold ps-2 fs-6">হ্যাঁ</span>
                                                 </label>
                                                 <label class="form-check form-check-custom form-check-inline form-check-solid">
                                                     <input class="form-check-input" name="freedom_son_status"
-                                                           {{ $user->freedom_son_status != 'yes' ? 'checked':'' }} type="radio" value="no">
+                                                           {{ ($user->freedom_son_status ?? old('freedom_son_status')) != 'yes' ? 'checked':'' }} type="radio" value="no">
                                                     <span class="fw-semibold ps-2 fs-6">না</span>
                                                 </label>
                                             </div>
@@ -277,18 +331,27 @@
                                                         value="{{ $division->id }}" {{ $permanentAddress->per_division == $division->id ? 'selected':'' }}>{{ $division->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('per_division')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">জেলা </label>
                                             <select class="form-select form-select-solid per_district" name="per_district" required>
                                                 <option value="">নির্বাচন করুন</option>
                                             </select>
+                                            @error('per_district')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">উপজেলা / থানা </label>
                                             <select class="form-select form-select-solid per_upazila" name="per_upazila" required>
                                                 <option value="">নির্বাচন করুন</option>
                                             </select>
+                                            @error('per_upazila')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">ওয়ার্ড নং </label>
@@ -299,6 +362,9 @@
                                             <select class="form-select form-select-solid per_ward" name="per_ward" required>
                                                 <option value="">নির্বাচন করুন</option>
                                             </select>
+                                                @error('per_ward')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                             </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
@@ -306,17 +372,26 @@
                                             <select class="form-select form-select-solid per_village" name="per_village" required>
                                                 <option value="">নির্বাচন করুন</option>
                                             </select>
+                                            @error('per_village')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">হোল্ডিং নম্বর </label>
                                             <input type="text" name="per_holding" class="form-control form-control-solid per_holding"
                                                    placeholder="হোল্ডিং নম্বর" value="{{ $permanentAddress->per_holding }}">
+                                            @error('per_holding')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">পোষ্ট অফিস </label>
                                             <select class="form-select form-select-solid per_post_office" name="per_post_office" required>
                                                 <option value="">নির্বাচন করুন</option>
                                             </select>
+                                            @error('per_post_office')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -362,6 +437,9 @@
                                                     <option value="{{ $division->id }}" {{ $presentAddress->pre_division == $division->id ? 'selected':'' }}>{{ $division->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('pre_division')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <label class=" fw-bolder">জেলা </label>

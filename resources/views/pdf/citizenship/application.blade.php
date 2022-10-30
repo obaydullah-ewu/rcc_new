@@ -64,11 +64,11 @@
                 <td class="title">জন্ম নিবন্ধন নংঃ</td>
                 <td class="birth_cirt"><span>{{ $citizenship->birth_certificate_no ?? 'N/A' }}</span></td>
                 <td class="title">জাতীয় পরিচয় পত্র নংঃ</td>
-                <td class="nid"><span>{{ $citizenship->nid ?? 'N/A' }}</span></td>
+                <td class="nid"><span>{{ en2bn($citizenship->nid) ?? 'N/A' }}</span></td>
             </tr>
             <tr>
                 <td class="title">মোবাইলঃ</td>
-                <td class="phone"><span>{{ $citizenship->mobile_number ?? 'N/A' }}</span></td>
+                <td class="phone"><span>{{ en2bn($citizenship->mobile_number) ?? 'N/A' }}</span></td>
             </tr>
         </table>
 

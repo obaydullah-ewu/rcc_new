@@ -89,14 +89,16 @@ class CitizenshipController extends Controller
         $citizen->payment_method = $request->payment_method;
         $certificate_fee = (empty(getOption('certificate_fee')) ? 0 : getOption('certificate_fee'));
         $information_centre_fee = (empty(getOption('information_centre_fee')) ? 0 : getOption('information_centre_fee'));
-        $mobile_banking_charge_fee = (empty(getOption('mobile_banking_charge_fee')) ? 0 : getOption('mobile_banking_charge_fee'));
+
         $citizen->certificate_fee = $certificate_fee;
         $citizen->information_centre_fee = $information_centre_fee;
-        $citizen->mobile_banking_charge_fee = $mobile_banking_charge_fee;
         if ($request->payment_method == 'bkash'|| $request->payment_method == 'nagad') {
-            $citizen->total_fee = $certificate_fee + $information_centre_fee;
-        } else {
+            $mobile_banking_charge_fee = (empty(getOption('mobile_banking_charge_fee')) ? 0 : getOption('mobile_banking_charge_fee'));
+            $citizen->mobile_banking_charge_fee = $mobile_banking_charge_fee;
             $citizen->total_fee = $certificate_fee + $information_centre_fee + $mobile_banking_charge_fee;
+        } else {
+            $citizen->mobile_banking_charge_fee = 0;
+            $citizen->total_fee = $certificate_fee + $information_centre_fee;
         }
         $citizen->date = $request->date;
         $citizen->bank_draft_no = $request->bank_draft_no;
