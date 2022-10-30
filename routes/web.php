@@ -97,6 +97,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('registration', [UserLoginController::class, 'showRegistrationForm'])->name('registration');
     Route::post('registration', [UserLoginController::class, 'registration'])->name('registration.post');
+    Route::get('registration/verify/{id}/{encrypt_pass}', [UserLoginController::class, 'getRegistrationVerification'])->name('getRegistration.verify');
+    Route::post('registration/verify', [UserLoginController::class, 'registrationVerification'])->name('registration.verify');
     Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [UserLoginController::class, 'login'])->name('login.post');
 

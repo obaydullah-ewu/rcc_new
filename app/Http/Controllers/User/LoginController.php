@@ -16,14 +16,24 @@ class LoginController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('user.auth.registration');
+        $data['pageTitle'] = 'Registration-Form';
+        return view('user.auth.registration')->with($data);
     }
 
     public function registration(Request $request)
     {
+        $data['pageTitle'] = 'Verification';
+        $user = User::where('email', $request->email)->orWhere('mobile_number', $request->mobile_number)->first();
+        if ($user) {
+            if ($user->status == USER_STATUS_NOT_VERIFIED) {
+                $user->delete();
+            }
+        }
+
         $request->validate([
             'email' => 'required_without:mobile_number|unique:users,email',
-            'mobile_number' => 'required_without:email|unique:users,mobile_number',
+//            'mobile_number' => 'required_without:email|unique:users,mobile_number',
+            'mobile_number' => 'required|unique:users,mobile_number',
             'password' => 'required|min:6'
         ],[
             'email.required_without' => 'ইমেইল নম্বর অথবা মোবাইল নম্বর নম্বর দিতে হবে',
@@ -34,9 +44,49 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->mobile_number = $request->mobile_number;
         $user->password = Hash::make($request->password);
+        $verify_code = rand(10000, 999999);
+        $user->verify_code = $verify_code;
+        $user->status = USER_STATUS_NOT_VERIFIED;
         $user->save();
 
-        if(auth()->attempt($request->only('email', 'password'))){
+        return redirect()->route('user.getRegistration.verify', [$user->id, encrypt($request->password)]);
+    }
+
+    public function getRegistrationVerification($id, $pass)
+    {
+        $user = User::find($id);
+        $data['user_id'] = $user->id;
+        $data['mobile_number'] = $user->mobile_number;
+        $data['password'] = decrypt($pass);
+
+        return view('user.auth.registration-verify')->with($data);
+    }
+
+    public function registrationVerification(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'mobile_number' => 'required',
+            'vc_1' => 'required',
+            'vc_2' => 'required',
+            'vc_3' => 'required',
+            'vc_4' => 'required',
+            'vc_5' => 'required',
+            'vc_6' => 'required',
+            'password' => 'required',
+        ]);
+
+        $verify_code = $request->vc_1 . $request->vc_2 . $request->vc_3 . $request->vc_4 . $request->vc_5 . $request->vc_6;
+
+        $user = User::where(['id' => $request->user_id, 'mobile_number' => $request->mobile_number, 'verify_code' => $verify_code])->first();
+        if (!$user) {
+            return redirect()->back()->with('error', 'Verification code is Wrong!');
+        }
+
+        $user->status = USER_STATUS_ACTIVE;
+        $user->save();
+
+        if(auth()->attempt($request->only('mobile_number', 'password'))){
             return redirect()->route('user.dashboard')->with('success','Login Successful');
         }
 
@@ -45,7 +95,8 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('user.auth.login');
+        $data['pageTitle'] = 'User-Login';
+        return view('user.auth.login')->with($data);
     }
 
     public function login(Request $request)
