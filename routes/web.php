@@ -19,6 +19,7 @@ use App\Http\Controllers\User\CitizenshipController as UserCitizenshipController
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\User\LoginController as UserLoginController;
 use App\Http\Controllers\User\Trade\TradeLicenseController as UserTradeLicenseController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,21 +106,22 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('logout', [UserLoginController::class, 'logout'])->name('logout');
+        Route::group(['middleware' => 'userStatusCheck'], function (){
+            Route::get('dashboard', [UserDashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('my-profile', [UserLoginController::class, 'myProfile'])->name('my-profile');
+            Route::post('my-profile', [UserLoginController::class, 'myProfileUpdate'])->name('my-profile.update');
 
-        Route::get('dashboard', [UserDashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('my-profile', [UserLoginController::class, 'myProfile'])->name('my-profile');
-        Route::post('my-profile', [UserLoginController::class, 'myProfileUpdate'])->name('my-profile.update');
+            Route::group(['prefix' => 'citizenship', 'as' => 'citizenship.'], function () {
+                Route::get('/', [UserCitizenshipController::class, 'list'])->name('list');
+                Route::get('application', [UserCitizenshipController::class, 'addCitizenshipApplication'])->name('add');
+                Route::post('application/store', [UserCitizenshipController::class, 'citizenshipApplicationStore'])->name('apply');
+            });
 
-        Route::group(['prefix' => 'citizenship', 'as' => 'citizenship.'], function () {
-            Route::get('/', [UserCitizenshipController::class, 'list'])->name('list');
-            Route::get('application', [UserCitizenshipController::class, 'addCitizenshipApplication'])->name('add');
-            Route::post('application/store', [UserCitizenshipController::class, 'citizenshipApplicationStore'])->name('apply');
-        });
+            Route::group(['prefix' => 'trade-license', 'as' => 'trade-license.'], function () {
+                Route::get('/', [UserTradeLicenseController::class, 'index'])->name('index');
+                Route::get('create', [UserTradeLicenseController::class, 'create'])->name('create');
 
-        Route::group(['prefix' => 'trade-license', 'as' => 'trade-license.'], function () {
-           Route::get('/', [UserTradeLicenseController::class, 'index'])->name('index');
-            Route::get('create', [UserTradeLicenseController::class, 'create'])->name('create');
-
+            });
         });
     });
 });
@@ -169,3 +171,9 @@ Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
 Route::get('citizenship-payment-details/{id}', [PDFController::class, 'citizenshipPaymentDetailsPDF'])->name('citizenship.paymentDetails.pdf');
 Route::get('citizenship-application/{id}', [PDFController::class, 'citizenshipApplicationPDF'])->name('citizenship.application.pdf');
 Route::get('citizenship-certificate/{id}', [PDFController::class, 'citizenshipCertificatePDF'])->name('citizenship.certificate.pdf');
+
+
+Route::get('migrate', function (){
+    Artisan::call('migrate');
+    return redirect()->back();
+});

@@ -266,7 +266,7 @@ class LoginController extends Controller
         $api_key = "jB5md0Q0y3jPLB93V1Vq";
         $senderid = "8809601004417";
         $number = "88".$mobile_number;
-        $message = "Your verification code is " . $verify_code;
+        $message = "Your registration verification code is " . $verify_code;
 
         $data = [
             "api_key" => $api_key,
