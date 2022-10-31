@@ -30,8 +30,11 @@
                         <label class="form-label fs-6 fw-bolder text-dark">ইমেইল বা মোবাইল নম্বর</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email_or_mobile_number" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid @error('email_or_mobile_number') is-invalid @enderror" type="text" name="email_or_mobile_number" autocomplete="off" />
                         <!--end::Input-->
+                        @error('email_or_mobile_number')
+                        <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -46,6 +49,9 @@
                         <!--begin::Input-->
                         <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
                         <!--end::Input-->
+                        @error('password')
+                        <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Actions-->

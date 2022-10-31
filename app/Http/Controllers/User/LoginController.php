@@ -22,7 +22,6 @@ class LoginController extends Controller
 
     public function registration(Request $request)
     {
-        $data['pageTitle'] = 'Verification';
         $user = User::where('email', $request->email)->orWhere('mobile_number', $request->mobile_number)->first();
         if ($user) {
             if ($user->status == USER_STATUS_NOT_VERIFIED) {
@@ -33,27 +32,35 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required_without:mobile_number|unique:users,email',
 //            'mobile_number' => 'required_without:email|unique:users,mobile_number',
-            'mobile_number' => 'required|unique:users,mobile_number',
+            'mobile_number' => 'required|digits:11|unique:users,mobile_number',
             'password' => 'required|min:6'
         ],[
             'email.required_without' => 'ইমেইল নম্বর অথবা মোবাইল নম্বর নম্বর দিতে হবে',
             'mobile_number.required_without' => 'ইমেইল নম্বর অথবা মোবাইল নম্বর নম্বর দিতে হবে',
+            'mobile_number.digits' => 'মোবাইল নম্বরটি '. en2bn(11) .' সংখ্যার হতে হবে।'
         ]);
 
         $user = new User();
         $user->email = $request->email;
         $user->mobile_number = $request->mobile_number;
         $user->password = Hash::make($request->password);
-        $verify_code = rand(10000, 999999);
-        $user->verify_code = $verify_code;
-        $user->status = USER_STATUS_NOT_VERIFIED;
-        $user->save();
 
-        return redirect()->route('user.getRegistration.verify', [$user->id, encrypt($request->password)]);
+        $verify_code = rand(100000, 999999);
+        $response = $this->sms_send($request->mobile_number, $verify_code);
+        $response = json_decode($response);
+        if ($response->response_code == 202) {
+            $user->verify_code = $verify_code;
+            $user->status = USER_STATUS_NOT_VERIFIED;
+            $user->save();
+            return redirect()->route('user.getRegistration.verify', [$user->id, encrypt($request->password)]);
+        } else {
+            return  redirect()->back()->with('error', 'আবার চেষ্টা করুন!');
+        }
     }
 
     public function getRegistrationVerification($id, $pass)
     {
+        $data['pageTitle'] = 'Verification';
         $user = User::find($id);
         $data['user_id'] = $user->id;
         $data['mobile_number'] = $user->mobile_number;
@@ -252,5 +259,29 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->with('success', 'Updated Successfully');
+    }
+
+    public function sms_send($mobile_number, $verify_code) {
+        $url = "https://bulksmsbd.net/api/smsapi";
+        $api_key = "jB5md0Q0y3jPLB93V1Vq";
+        $senderid = "8809601004417";
+        $number = "88".$mobile_number;
+        $message = "Your verification code is " . $verify_code;
+
+        $data = [
+            "api_key" => $api_key,
+            "senderid" => $senderid,
+            "number" => $number,
+            "message" => $message
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return $response;
     }
 }

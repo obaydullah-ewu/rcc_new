@@ -27,21 +27,27 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">ইমেইল</label>
+                        <label class="form-label fs-6 fw-bolder @error('email') text-danger @enderror">ইমেইল</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{ old('email') }}" />
+                        <input class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror" type="text" name="email" value="{{ old('email') }}" />
                         <!--end::Input-->
+                        @error('email')
+                        <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">মোবাইল নম্বর</label>
+                        <label class="form-label fs-6 fw-bolder  @error('mobile_number') text-danger @enderror">মোবাইল নম্বর</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="mobile_number" value="{{ old('mobile_number') }}" required />
+                        <input class="form-control form-control-lg form-control-solid @error('mobile_number') is-invalid @enderror" type="text" name="mobile_number" value="{{ old('mobile_number') }}" required />
                         <!--end::Input-->
+                        @error('mobile_number')
+                        <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -56,6 +62,9 @@
                         <!--begin::Input-->
                         <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" required/>
                         <!--end::Input-->
+                        @error('password')
+                        <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Actions-->
